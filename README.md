@@ -1,3 +1,5 @@
-# CrossyRoads!
+Crossy Road
+By Max, Cat, and Jacob
 
-Info about your project goes here
+This is our attempt at recreating the popular mobile app "Crossy Road."
+
