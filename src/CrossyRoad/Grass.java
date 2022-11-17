@@ -1,12 +1,17 @@
 package CrossyRoad;
 
 import java.awt.Color;
+import edu.macalester.graphics.CanvasWindow;
 
-public class Grass extends Row{
+public class Grass extends Row {
 
-    public Grass(Color color) {
-        super(color);
-        //TODO Auto-generated constructor stub
+    public Grass(double y) {
+        super(Color.GREEN.darker(), y);
     }
-    
+
+
+    public void addToCanvas(CanvasWindow canvas) {
+        canvas.add(this);
+    }
+
 }

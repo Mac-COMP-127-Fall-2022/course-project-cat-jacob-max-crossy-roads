@@ -2,8 +2,6 @@ package CrossyRoad;
 
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.events.Key;
 
 public class CrossyRoad {
@@ -13,32 +11,54 @@ public class CrossyRoad {
     private CanvasWindow canvas;
     private Chicken chicken;
     private Tree tree;
+    private Car car;
+    private Road road;
+    private Grass grass;
 
+    // canvas is x=700, y=700
+    // 10 rows on canvas so each row is x=700, y=70
+    // make objects a little smaller than row so 60 x 60
+    // make chicken a little smaller than objects so 50 x 50
 
-    public CrossyRoad(){
+    // might need to change so its a grid? easier for intersections and movement?
+
+    public CrossyRoad() {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        chicken = new Chicken(CANVAS_WIDTH/2,3*CANVAS_HEIGHT/4);
-        chicken.addToCanvas(canvas);
+
+        road = new Road(0);
+        road.addToCanvas(canvas);
+
+        grass = new Grass(70);
+        grass.addToCanvas(canvas);
+
         tree = new Tree(150, 150);
         tree.addToCanvas(canvas);
+
+        car = new Car(300, 300);
+        car.addToCanvas(canvas);
+
+        chicken = new Chicken(CANVAS_WIDTH / 2, 3 * CANVAS_HEIGHT / 4);
+        chicken.addToCanvas(canvas);
+
         run();
     }
 
-    private void run(){
-        //Just realized we dont want chicken to move, lol
-        //can use this same layout to create moves for canvas
+    private void run() {
+        // Just realized we dont want chicken to move, lol
+        // can use this same layout to create moves for canvas
         canvas.onKeyDown(event -> {
             if (event.getKey() == Key.LEFT_ARROW) {
-                    chicken.moveLeft();
+                chicken.moveLeft();
 
-            }else if (event.getKey() == Key.RIGHT_ARROW) {
-                    chicken.moveRight();
-//only up should change actually not left right just need to create bounds so it doesnt go off campus left right
-            }else if (event.getKey() == Key.UP_ARROW) {
-                    chicken.moveUp();
-    }
+            } else if (event.getKey() == Key.RIGHT_ARROW) {
+                chicken.moveRight();
+
+            } else if (event.getKey() == Key.UP_ARROW) {  // will need to change so it moves canvas and not chicken
+                chicken.moveUp();
+
+            }
         });
-         
+
     }
 
     public static void main(String[] args) {
