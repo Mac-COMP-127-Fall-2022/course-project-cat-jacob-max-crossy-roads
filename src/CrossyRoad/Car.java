@@ -16,10 +16,9 @@ public class Car extends GraphicsGroup {
     // private Rectangle size;
     private Ellipse leftWheel;
     private Ellipse rightWheel;
-    private GraphicsGroup carGroup;
 
     public Car(double x, double y) {
-        carGroup = new GraphicsGroup(x, y);
+        super(x, y);
         buildCar();
     }
 
@@ -32,26 +31,26 @@ public class Car extends GraphicsGroup {
         topBody = new Rectangle(CAR_WIDTH / 4, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
         topBody.setStrokeColor(Color.RED.darker());
         topBody.setFillColor(Color.RED.darker());
-        carGroup.add(topBody);
+        this.add(topBody);
 
         bottomBody = new Rectangle(0, CAR_HEIGHT / 3, CAR_WIDTH, CAR_HEIGHT / 2);
         bottomBody.setStrokeColor(Color.RED.darker());
         bottomBody.setFillColor(Color.RED.darker());
-        carGroup.add(bottomBody);
+        this.add(bottomBody);
 
         leftWheel = new Ellipse(CAR_WIDTH / 30, CAR_HEIGHT * 5 / 8, CAR_WIDTH / 3, CAR_HEIGHT / 3);
         leftWheel.setStrokeColor(Color.BLACK);
         leftWheel.setFillColor(Color.BLACK);
-        carGroup.add(leftWheel);
+        this.add(leftWheel);
 
         rightWheel = new Ellipse(CAR_WIDTH * 5 / 8, CAR_HEIGHT * 5 / 8, CAR_WIDTH / 3, CAR_HEIGHT / 3);
         rightWheel.setStrokeColor(Color.BLACK);
         rightWheel.setFillColor(Color.BLACK);
-        carGroup.add(rightWheel);
+        this.add(rightWheel);
     }
 
     public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(carGroup);
+        canvas.add(this);
     }
 
 }
