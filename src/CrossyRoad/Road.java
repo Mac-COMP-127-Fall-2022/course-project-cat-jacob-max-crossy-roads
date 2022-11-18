@@ -6,10 +6,13 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Rectangle;
 
 public class Road extends Row {
+    double y;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
+        this.y = y;
         drawLines(y);
+        addCar();
 
     }
 
@@ -20,6 +23,18 @@ public class Road extends Row {
             line.setFillColor(Color.YELLOW);
             line.setFilled(true);
             super.add(line);
+        }
+    }
+
+    // want to add just one car eventually
+    private void addCar(){
+        for (int i = 35; i < 665; i+=70) {
+
+            if (Math.random()>=.9){
+
+                Car car = new Car(i,y);
+                this.add(car);
+            }
         }
     }
 
