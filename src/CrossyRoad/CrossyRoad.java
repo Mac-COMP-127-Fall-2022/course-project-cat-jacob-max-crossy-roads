@@ -1,7 +1,10 @@
 package CrossyRoad;
 
 
+import java.lang.ProcessBuilder.Redirect.Type;
+
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Point;
 import edu.macalester.graphics.events.Key;
 
 public class CrossyRoad {
@@ -41,7 +44,7 @@ public class CrossyRoad {
         car = new Car(300, 300);
         car.addToCanvas(canvas);
 
-        chicken = new Chicken(35+ CANVAS_WIDTH / 2, 35 + 7 * CANVAS_HEIGHT / 10);
+        chicken = new Chicken(35+ CANVAS_WIDTH / 2, 7 * CANVAS_HEIGHT / 10);
         chicken.addToCanvas(canvas);
 
         run();
@@ -52,15 +55,24 @@ public class CrossyRoad {
         // can use this same layout to create moves for canvas
         canvas.onKeyDown(event -> {
             if (event.getKey() == Key.LEFT_ARROW) {
-                chicken.moveLeft();
+                if (canvas.getElementAt(chicken.getChicken().getCenter().getX()-70,chicken.getChicken().getCenter().getY()) instanceof Row){
+                    System.out.println('!');
+                    chicken.moveLeft();
+                }
 
             } else if (event.getKey() == Key.RIGHT_ARROW) {
-                chicken.moveRight();
+                if (canvas.getElementAt(chicken.getChicken().getCenter().getX()+70,chicken.getChicken().getCenter().getY()) instanceof Row){
+                    System.out.println('!');
+                    chicken.moveRight();
+                }
 
-            } else if (event.getKey() == Key.UP_ARROW) {  // will need to change so it moves canvas and not chicken
-                //roadRowManager.moveRow();
-                // grassRowManager.moveRow();
-                rowManager.moveRows();
+
+            } else if (event.getKey() == Key.UP_ARROW) {
+
+                if (canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Row){
+                    System.out.println('!');
+                    rowManager.moveRows();
+                }
 
             }
         });

@@ -4,7 +4,7 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Image;
 
-public class Chicken extends GraphicsGroup {
+public class Chicken {
 
 
     private static final double CHICKEN_HEIGHT = 50;
@@ -31,7 +31,7 @@ public class Chicken extends GraphicsGroup {
     public void moveLeft() {
         // double moveX = point.getX();
         if (x > 0) {
-            x -= 50;
+            x -= 70;
             chicken.setPosition(x, y);
         }
 
@@ -39,7 +39,7 @@ public class Chicken extends GraphicsGroup {
 
     public void moveRight() {
         if (x <= CrossyRoad.CANVAS_WIDTH - 2 * CHICKEN_WIDTH) {
-            x += 50;
+            x += 70;
             chicken.setPosition(x, y);
         }
 
@@ -53,6 +53,10 @@ public class Chicken extends GraphicsGroup {
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(chicken);
+    }
+
+    public Image getChicken() {
+        return chicken;
     }
 
 }

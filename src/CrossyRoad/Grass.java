@@ -14,7 +14,7 @@ public class Grass extends Row {
 
     private void addTrees(){
         for (int i = 35; i < 665; i+=70) {
-            if (Math.random()>=.9){
+            if (Math.random()>=.8){
                 Tree tree = new Tree(i,y);
                 this.add(tree);
             }
