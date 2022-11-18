@@ -11,7 +11,7 @@ public abstract class Row extends GraphicsGroup {
     public static final double ROW_WIDTH = CrossyRoad.CANVAS_WIDTH;
 
 
-    public Row(Color color, double y) {
+    public Row(Color color, double y){
         super();
         drawRow(y, color);
     }
@@ -24,5 +24,7 @@ public abstract class Row extends GraphicsGroup {
         super.add(row);
     }
 
-
+    public void setRowPos(double pos){
+        this.setPosition(0, pos);
+    }
 }

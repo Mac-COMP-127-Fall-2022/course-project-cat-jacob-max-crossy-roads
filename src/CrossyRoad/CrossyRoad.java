@@ -14,6 +14,9 @@ public class CrossyRoad {
     private Car car;
     private Road road;
     private Grass grass;
+    private RowManager roadRowManager;
+    private RowManager grassRowManager;
+    private RowManager rowManager;
 
     // canvas is x=700, y=700
     // 10 rows on canvas so each row is x=700, y=70
@@ -25,11 +28,15 @@ public class CrossyRoad {
     public CrossyRoad() {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        road = new Road(0);
-        road.addToCanvas(canvas);
+        // road = new Road(0);
+        // road.addToCanvas(canvas);
 
-        grass = new Grass(70);
-        grass.addToCanvas(canvas);
+        // grass = new Grass(70);
+        // grass.addToCanvas(canvas);
+        
+        // roadRowManager = new RowManager(road);
+        // grassRowManager = new RowManager(grass);
+        rowManager = new RowManager(canvas);
 
         tree = new Tree(150, 150);
         tree.addToCanvas(canvas);
@@ -54,7 +61,9 @@ public class CrossyRoad {
                 chicken.moveRight();
 
             } else if (event.getKey() == Key.UP_ARROW) {  // will need to change so it moves canvas and not chicken
-                chicken.moveUp();
+                //roadRowManager.moveRow();
+                // grassRowManager.moveRow();
+                rowManager.moveRows();
 
             }
         });
