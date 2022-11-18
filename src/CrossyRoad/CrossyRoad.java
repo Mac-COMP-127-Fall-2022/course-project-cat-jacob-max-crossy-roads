@@ -4,6 +4,7 @@ package CrossyRoad;
 import java.lang.ProcessBuilder.Redirect.Type;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.events.Key;
 
@@ -31,18 +32,7 @@ public class CrossyRoad {
     public CrossyRoad() {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        // road = new Road(0);
-        // road.addToCanvas(canvas);
-
-        // grass = new Grass(70);
-        // grass.addToCanvas(canvas);
-        
-        // roadRowManager = new RowManager(road);
-        // grassRowManager = new RowManager(grass);
         rowManager = new RowManager(canvas);
-
-        car = new Car(300, 300);
-        car.addToCanvas(canvas);
 
         chicken = new Chicken(35+ CANVAS_WIDTH / 2, 7 * CANVAS_HEIGHT / 10);
         chicken.addToCanvas(canvas);
@@ -51,26 +41,20 @@ public class CrossyRoad {
     }
 
     private void run() {
-        // Just realized we dont want chicken to move, lol
-        // can use this same layout to create moves for canvas
         canvas.onKeyDown(event -> {
             if (event.getKey() == Key.LEFT_ARROW) {
-                if (canvas.getElementAt(chicken.getChicken().getCenter().getX()-70,chicken.getChicken().getCenter().getY()) instanceof Row){
-                    System.out.println('!');
+                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX()-70,chicken.getChicken().getCenter().getY()) instanceof Ellipse)){
                     chicken.moveLeft();
                 }
 
             } else if (event.getKey() == Key.RIGHT_ARROW) {
-                if (canvas.getElementAt(chicken.getChicken().getCenter().getX()+70,chicken.getChicken().getCenter().getY()) instanceof Row){
-                    System.out.println('!');
+                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX()+70,chicken.getChicken().getCenter().getY()) instanceof Ellipse)){
                     chicken.moveRight();
                 }
 
 
             } else if (event.getKey() == Key.UP_ARROW) {
-
-                if (canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Row){
-                    System.out.println('!');
+                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Ellipse)){
                     rowManager.moveRows();
                 }
 
