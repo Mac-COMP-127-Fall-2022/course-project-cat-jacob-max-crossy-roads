@@ -2,18 +2,21 @@ package CrossyRoad;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.GraphicsObject;
-import java.util.ArrayList;
-import java.util.List;
+// import edu.macalester.graphics.GraphicsObject;
+// import java.util.ArrayList;
+// import java.util.List;
+import java.util.Random;
 
-import javax.sql.RowSet;
+// import javax.sql.RowSet;
 
-import java.awt.Color;
+// import java.awt.Color;
 
 public class RowManager {
     private GraphicsGroup rows;
+    private Random rand;
 
     public RowManager(CanvasWindow canvas){
+        rand = new Random();
         rows = new GraphicsGroup();
         setUpRows();
         canvas.add(rows);
@@ -35,6 +38,11 @@ public class RowManager {
                 ((Row) row).removeAll();
             }
         });
-        rows.add(new Road(0));
+        
+        if (Math.random() >= .5 ){
+            rows.add(new Road(0));
+        } else {
+            rows.add(new Grass(0));
+        }
     }
 }
