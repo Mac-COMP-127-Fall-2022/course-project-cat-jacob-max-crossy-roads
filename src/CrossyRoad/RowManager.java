@@ -34,7 +34,7 @@ public class RowManager {
             else if (row.getY()>=630){
                 ((Row) row).removeAll();
             }
-            //rows.add(new Grass(0));
         });
+        rows.add(new Road(0));
     }
 }
