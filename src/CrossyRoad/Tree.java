@@ -13,12 +13,11 @@ public class Tree extends GraphicsGroup {
     private static final double TREE_HEIGHT = 60;
     private Rectangle treeBase;
     private Ellipse leaf;
-    private GraphicsGroup treeGroup;
     // private Rectangle size;
 
 
     public Tree(double x, double y) {
-        treeGroup = new GraphicsGroup(x, y);
+        super(x, y);
         buildTree();
     }
 
@@ -30,16 +29,16 @@ public class Tree extends GraphicsGroup {
         treeBase = new Rectangle(TREE_WIDTH * 5 / 12, TREE_HEIGHT * 3 / 4, TREE_WIDTH / 6, TREE_HEIGHT / 4);
         treeBase.setStrokeColor(Color.BLACK);
         treeBase.setFillColor(Color.BLACK);
-        treeGroup.add(treeBase);
+        this.add(treeBase);
 
         leaf = new Ellipse(TREE_WIDTH / 8, 0, TREE_WIDTH * 3 / 4, TREE_HEIGHT * 3 / 4);
         leaf.setStrokeColor(Color.GREEN);
         leaf.setFillColor(Color.GREEN);
-        treeGroup.add(leaf);
+        this.add(leaf);
     }
 
     public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(treeGroup);
+        canvas.add(this);
     }
 
 }

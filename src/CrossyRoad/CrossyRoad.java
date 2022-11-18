@@ -38,13 +38,10 @@ public class CrossyRoad {
         // grassRowManager = new RowManager(grass);
         rowManager = new RowManager(canvas);
 
-        tree = new Tree(150, 150);
-        tree.addToCanvas(canvas);
-
         car = new Car(300, 300);
         car.addToCanvas(canvas);
 
-        chicken = new Chicken(CANVAS_WIDTH / 2, 3 * CANVAS_HEIGHT / 4);
+        chicken = new Chicken(35+ CANVAS_WIDTH / 2, 35 + 7 * CANVAS_HEIGHT / 10);
         chicken.addToCanvas(canvas);
 
         run();
