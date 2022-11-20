@@ -41,6 +41,7 @@ public class CrossyRoad {
     }
 
     private void run() {
+        //https://stackoverflow.com/questions/541749/how-to-determine-an-objects-class used to do the instanceof check
         canvas.onKeyDown(event -> {
             if (event.getKey() == Key.LEFT_ARROW) {
                 if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX()-70,chicken.getChicken().getCenter().getY()) instanceof Ellipse)){
