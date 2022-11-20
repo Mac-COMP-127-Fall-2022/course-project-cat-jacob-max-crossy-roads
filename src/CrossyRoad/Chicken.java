@@ -28,7 +28,7 @@ public class Chicken {
 
     public void moveLeft() {
         // double moveX = point.getX();
-        if (x > 0) {
+        if (x > 70) {
             x -= 70;
             chicken.setPosition(x, y);
         }
@@ -36,7 +36,7 @@ public class Chicken {
     }
 
     public void moveRight() {
-        if (x <= CrossyRoad.CANVAS_WIDTH - 2 * CHICKEN_WIDTH) {
+        if (x < CrossyRoad.CANVAS_WIDTH - 3 * CHICKEN_WIDTH) {
             x += 70;
             chicken.setPosition(x, y);
         }
