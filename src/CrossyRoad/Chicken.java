@@ -46,9 +46,14 @@ public class Chicken {
     }
 
     public void moveUp() {
-        y -= 50;
+        y -= 70;
         chicken.setPosition(x, y);
 
+    }
+
+    public void moveDown() {
+        y+= 70;
+        chicken.setPosition(x, y);
     }
 
     public void addToCanvas(CanvasWindow canvas) {

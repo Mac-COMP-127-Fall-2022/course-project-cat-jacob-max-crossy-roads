@@ -34,7 +34,7 @@ public class CrossyRoad {
 
         rowManager = new RowManager(canvas);
 
-        chicken = new Chicken(35+ CANVAS_WIDTH / 2, 7 * CANVAS_HEIGHT / 10);
+        chicken = new Chicken(35+ CANVAS_WIDTH / 2, 5 * CANVAS_HEIGHT / 10);
         chicken.addToCanvas(canvas);
 
         run();
@@ -55,10 +55,18 @@ public class CrossyRoad {
 
 
             } else if (event.getKey() == Key.UP_ARROW) {
-                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Ellipse)){
+                if(chicken.getChicken().getY() > 5 * CANVAS_HEIGHT / 10){
+                    chicken.moveUp();
+                }
+                else if(!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Ellipse)){
                     rowManager.moveRows();
                 }
 
+            } else if (event.getKey() == Key.DOWN_ARROW) {
+                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()+70) instanceof Ellipse) &&
+                    chicken.getChicken().getY() < 600){
+                    chicken.moveDown();
+                }
             }
         });
 
