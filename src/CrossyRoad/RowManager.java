@@ -1,14 +1,20 @@
 package CrossyRoad;
 
+import java.util.ArrayList;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
 
 public class RowManager {
     private GraphicsGroup rows;
+    private ArrayList<Road> roads;
+    private ArrayList<Grass> grasses;
 
     public RowManager(CanvasWindow canvas) {
         rows = new GraphicsGroup();
+        roads = new ArrayList<Road>();
+        grasses = new ArrayList<Grass>();
         setUpRows();
         canvas.add(rows);
     }
@@ -39,9 +45,21 @@ public class RowManager {
 
     public void randomRow(double y) {
         if (Math.random() >= .4) {
-            rows.add(new Road(y));
+            Road road = new Road(y);
+            rows.add(road);
+            roads.add(road);
         } else {
-            rows.add(new Grass(y));
+            Grass grass = new Grass(y);
+            rows.add(grass);
+            grasses.add(grass);
         }
+    }
+
+    public GraphicsGroup getRows(){
+        return rows;
+    }
+    
+    public ArrayList<Road> getRoads() {
+        return roads;
     }
 }

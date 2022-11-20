@@ -2,10 +2,7 @@ package CrossyRoad;
 
 import java.awt.Color;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
-import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.*;
 
 public class Car extends GraphicsGroup {
 
@@ -51,6 +48,15 @@ public class Car extends GraphicsGroup {
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(this);
+    }
+
+    public void animateCar( double dt, CanvasWindow canvas){
+        if (this.getPosition().getX() > 700){
+            canvas.remove(this);
+        }
+        else{
+            this.moveBy(dt*75, 0);
+        }
     }
 
 }

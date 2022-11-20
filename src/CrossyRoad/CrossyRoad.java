@@ -1,11 +1,8 @@
 package CrossyRoad;
 
 
-import java.lang.ProcessBuilder.Redirect.Type;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
-import edu.macalester.graphics.Point;
+import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
 
 public class CrossyRoad {
@@ -14,12 +11,6 @@ public class CrossyRoad {
 
     private CanvasWindow canvas;
     private Chicken chicken;
-    private Tree tree;
-    private Car car;
-    private Road road;
-    private Grass grass;
-    private RowManager roadRowManager;
-    private RowManager grassRowManager;
     private RowManager rowManager;
 
     // canvas is x=700, y=700
@@ -70,6 +61,14 @@ public class CrossyRoad {
             }
         });
 
+        canvas.animate(()->{
+            for (Road road : rowManager.getRoads()) {
+                for (Car car : road.getCars()) {
+                    car.animateCar(.1, canvas);
+                }
+            }
+                 
+        });
     }
 
     public static void main(String[] args) {

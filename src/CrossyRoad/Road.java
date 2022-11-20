@@ -1,15 +1,18 @@
 package CrossyRoad;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.*;
+
 
 public class Road extends Row {
     double y;
+    private ArrayList<Car> cars;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
+        cars = new ArrayList<Car>();
         this.y = y;
         drawLines(y);
         addCar();
@@ -28,14 +31,15 @@ public class Road extends Row {
 
     // want to add just one car eventually
     private void addCar(){
-        for (int i = 35; i < 665; i+=70) {
-
-            if (Math.random()>=.9){
-
-                Car car = new Car(i,y);
-                this.add(car);
-            }
+        if (Math.random()>=.1){
+            Car car = new Car(-20,y);
+            this.add(car);
+            cars.add(car);
         }
+    }
+
+    public ArrayList<Car> getCars(){
+        return cars;
     }
 
     public void addToCanvas(CanvasWindow canvas) {
