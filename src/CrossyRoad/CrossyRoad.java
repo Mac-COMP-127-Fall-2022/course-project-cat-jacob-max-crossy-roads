@@ -2,6 +2,10 @@ package CrossyRoad;
 
 
 
+import java.awt.Color;
+
+import javax.swing.JLabel;
+
 import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
 
@@ -13,6 +17,7 @@ public class CrossyRoad {
     private Chicken chicken;
     private RowManager rowManager;
     public static int score = 0;
+    
 
     // canvas is x=700, y=700
     // 10 rows on canvas so each row is x=700, y=70
@@ -28,6 +33,8 @@ public class CrossyRoad {
 
         chicken = new Chicken(35+ CANVAS_WIDTH / 2, 5 * CANVAS_HEIGHT / 10);
         chicken.addToCanvas(canvas);
+
+        scoreTracker();
 
         run();
     }
@@ -49,6 +56,7 @@ public class CrossyRoad {
             } else if (event.getKey() == Key.UP_ARROW) {
                 if(chicken.getChicken().getY() > 5 * CANVAS_HEIGHT / 10){
                     chicken.moveUp();
+                    
                 }
                 else if(!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Ellipse)){
                     rowManager.moveRows();
@@ -74,6 +82,26 @@ public class CrossyRoad {
                  
         });
     }
+
+    public void scoreTracker(){
+        Rectangle background = new Rectangle(20, 20, 155, 40);
+        background.setFilled(true);
+        background.setFillColor(Color.white);
+        canvas.add(background);
+
+        // JLabel scoreLabel = new JLabel("Score: 0");
+        // scoreLabel.setText();
+
+
+        GraphicsText scoreLabel = new GraphicsText();
+        scoreLabel = new GraphicsText();
+        scoreLabel.setFont(FontStyle.BOLD, 30);
+        scoreLabel.setText("Score: " + score);
+        scoreLabel.setPosition(30,50);
+        canvas.add(scoreLabel);
+    }
+
+
 
     public static void main(String[] args) {
         new CrossyRoad();
