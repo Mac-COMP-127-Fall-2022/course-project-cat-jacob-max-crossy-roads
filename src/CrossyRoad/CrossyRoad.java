@@ -12,6 +12,7 @@ public class CrossyRoad {
     private CanvasWindow canvas;
     private Chicken chicken;
     private RowManager rowManager;
+    public static int score = 0;
 
     // canvas is x=700, y=700
     // 10 rows on canvas so each row is x=700, y=70
