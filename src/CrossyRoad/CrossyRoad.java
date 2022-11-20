@@ -63,6 +63,9 @@ public class CrossyRoad {
 
         canvas.animate(()->{
             for (Road road : rowManager.getRoads()) {
+                if (Math.random()<.05){
+                    road.addCar();
+                }
                 for (Car car : road.getCars()) {
                     car.animateCar(.1, canvas);
                 }

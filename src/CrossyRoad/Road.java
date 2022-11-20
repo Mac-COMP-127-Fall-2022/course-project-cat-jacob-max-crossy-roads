@@ -9,12 +9,14 @@ import edu.macalester.graphics.*;
 public class Road extends Row {
     double y;
     private ArrayList<Car> cars;
+    double direction;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
         cars = new ArrayList<Car>();
         this.y = y;
         drawLines(y);
+        direction = (Math.random()>.5 ? 720 : -20);
         addCar();
 
     }
@@ -29,10 +31,9 @@ public class Road extends Row {
         }
     }
 
-    // want to add just one car eventually
-    private void addCar(){
+    public void addCar(){
         if (Math.random()>=.1){
-            Car car = new Car(-20,y);
+            Car car = new Car(direction,y);
             this.add(car);
             cars.add(car);
         }

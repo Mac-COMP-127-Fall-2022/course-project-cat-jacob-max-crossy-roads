@@ -13,9 +13,13 @@ public class Car extends GraphicsGroup {
     // private Rectangle size;
     private Ellipse leftWheel;
     private Ellipse rightWheel;
+    private double x;
+    private double carSpeed;
 
     public Car(double x, double y) {
         super(x, y);
+        this.x = x;
+        carSpeed = 50+ Math.random()*50;
         buildCar();
     }
 
@@ -51,11 +55,14 @@ public class Car extends GraphicsGroup {
     }
 
     public void animateCar( double dt, CanvasWindow canvas){
-        if (this.getPosition().getX() > 700){
-            canvas.remove(this);
+        if (this.getPosition().getX() > 700 && x == -20){
+            this.removeAll();
+        }
+        else if (this.getPosition().getX() < -20 && x == 720){
+            this.removeAll();
         }
         else{
-            this.moveBy(dt*75, 0);
+            this.moveBy((x == -20 ? dt*carSpeed : -dt*carSpeed), 0);
         }
     }
 
