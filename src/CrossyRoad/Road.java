@@ -45,6 +45,10 @@ public class Road extends Row {
         return cars;
     }
 
+    public double getCarSpeed(){
+        return carSpeed;
+    }
+
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(this);
     }

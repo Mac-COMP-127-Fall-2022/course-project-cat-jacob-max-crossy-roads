@@ -10,7 +10,6 @@ public class Car extends GraphicsGroup {
     private static final double CAR_HEIGHT = 60;
     private Rectangle topBody;
     private Rectangle bottomBody;
-    // private Rectangle size;
     private Ellipse leftWheel;
     private Ellipse rightWheel;
     private double x;
@@ -28,10 +27,6 @@ public class Car extends GraphicsGroup {
     }
 
     private void buildLeftFacingCar() {
-
-        // to test proportions:
-        // size = new Rectangle(0,0,CAR_WIDTH, CAR_HEIGHT);
-        // carGroup.add(size);
 
         topBody = new Rectangle(CAR_WIDTH / 4, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
         topBody.setStrokeColor(Color.RED.darker());
@@ -55,10 +50,6 @@ public class Car extends GraphicsGroup {
     }
 
     private void buildRightFacingCar() {
-
-        // to test proportions:
-        // size = new Rectangle(0,0,CAR_WIDTH, CAR_HEIGHT);
-        // carGroup.add(size);
 
         topBody = new Rectangle(0, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
         topBody.setStrokeColor(Color.RED.darker());
