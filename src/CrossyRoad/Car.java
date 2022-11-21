@@ -37,14 +37,18 @@ public class Car extends GraphicsGroup {
         // size = new Rectangle(0,0,CAR_WIDTH, CAR_HEIGHT);
         // carGroup.add(size);
 
+        List<Color> moColors = colorList();
+        int x = rand.nextInt(10);
+        Color useColors = moColors.get(x);
+
         topBody = new Rectangle(CAR_WIDTH / 4, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
-        topBody.setStrokeColor(Color.RED.darker());
-        topBody.setFillColor(Color.RED.darker());
+        topBody.setStrokeColor(useColors);
+        topBody.setFillColor(useColors);
         this.add(topBody);
 
         bottomBody = new Rectangle(0, CAR_HEIGHT / 3, CAR_WIDTH, CAR_HEIGHT / 2);
-        bottomBody.setStrokeColor(Color.RED.darker());
-        bottomBody.setFillColor(Color.RED.darker());
+        bottomBody.setStrokeColor(useColors);
+        bottomBody.setFillColor(useColors);
         this.add(bottomBody);
 
         leftWheel = new Ellipse(CAR_WIDTH / 30, CAR_HEIGHT * 5 / 8, CAR_WIDTH / 3, CAR_HEIGHT / 3);
