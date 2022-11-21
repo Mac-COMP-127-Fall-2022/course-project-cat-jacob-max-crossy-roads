@@ -100,6 +100,10 @@ public class Car extends GraphicsGroup {
         }
     }
 
+    public Car getCar(){
+        return this;
+    }
+
     public List<Color> colorList(){
         List<Color> colors = new ArrayList<>();
         colors.add(new Color(225,49,49));
