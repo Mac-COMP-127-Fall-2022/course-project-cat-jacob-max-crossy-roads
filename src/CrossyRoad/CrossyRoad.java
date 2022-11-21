@@ -18,6 +18,8 @@ public class CrossyRoad {
     private GraphicsText scoreLabel;
     private Rectangle scoreBackground;
     private GraphicsText title;
+    private GraphicsText titleShadow;
+
 
     // make it so trees don't populate on top of chicken
     // cars arent inside each other
@@ -27,6 +29,7 @@ public class CrossyRoad {
         scoreBackground = new Rectangle(20, 20, 155, 40);
         scoreLabel = new GraphicsText();
         title = new GraphicsText();
+        titleShadow = new GraphicsText();
 
         rowManager = new RowManager(canvas);
 
@@ -44,6 +47,7 @@ public class CrossyRoad {
         // https://stackoverflow.com/questions/541749/how-to-determine-an-objects-class used to do the
         // instanceof check
         canvas.onKeyDown(event -> {
+
             if (event.getKey() == Key.LEFT_ARROW) {
                 if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX() - 70,
                     chicken.getChicken().getCenter().getY()) instanceof Ellipse)) {
@@ -78,6 +82,9 @@ public class CrossyRoad {
                     chicken.moveDown();
                 }
             }
+
+            canvas.remove(title);
+            canvas.remove(titleShadow);
         });
 
         canvas.animate(() -> {
@@ -99,7 +106,7 @@ public class CrossyRoad {
 
     public void scoreTracker() {
         scoreBackground.setFilled(true);
-        scoreBackground.setFillColor(Color.white);
+        scoreBackground.setFillColor(Color.WHITE);
         canvas.add(scoreBackground);
 
         scoreLabel.setFont(FontStyle.BOLD, 30);
@@ -109,9 +116,16 @@ public class CrossyRoad {
     }
 
     public void titleScreen() {
-        title.setFont("chalkboard", FontStyle.BOLD, 100);
+        titleShadow.setFont("rockwell", FontStyle.BOLD, 80);
+        titleShadow.setFillColor(Color.DARK_GRAY);
+        titleShadow.setText("Crossy Roads");
+        titleShadow.setCenter(CANVAS_WIDTH/2+5, CANVAS_HEIGHT/2+5);
+        canvas.add(titleShadow);
+
+        title.setFont("rockwell", FontStyle.BOLD, 80);
+        title.setFillColor(Color.WHITE);
         title.setText("Crossy Roads");
-        title.setCenter(CANVAS_WIDTH/2, CANVAS_HEIGHT/3);
+        title.setCenter(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
         canvas.add(title);
     }
 
@@ -123,40 +137,3 @@ public class CrossyRoad {
         new CrossyRoad();
     }
 }
-
-
-/**
- * available font families are: [.applesystemuifont, academy engraved let, 
- * al bayan, al nile, al tarikh, american typewriter, andale mono, apple braille, 
- * apple chancery, apple color emoji, apple sd gothic neo, apple symbols, 
- * applegothic, applemyungjo, arial, arial black, arial hebrew, arial hebrew scholar, 
- * arial narrow, arial rounded mt bold, arial unicode ms, avenir, avenir next, 
- * avenir next condensed, ayuthaya, baghdad, bangla mn, bangla sangam mn, 
- * baskerville, beirut, big caslon, bodoni 72, bodoni 72 oldstyle, 
- * bodoni 72 smallcaps, bodoni ornaments, bradley hand, brush script mt, 
- * chalkboard, chalkboard se, chalkduster, charter, cochin, comic sans ms, 
- * copperplate, corsiva hebrew, courier new, damascus, decotype naskh, 
- * devanagari mt, devanagari sangam mn, dialog, dialoginput, didot, din alternate, 
- * din condensed, diwan kufi, diwan thuluth, euphemia ucas, farah, farisi, futura, 
- * galvji, gb18030 bitmap, geeza pro, geneva, georgia, gill sans, grantha sangam mn, 
- * gujarati mt, gujarati sangam mn, gurmukhi mn, gurmukhi mt, gurmukhi sangam mn, 
- * heiti sc, heiti tc, helvetica, helvetica neue, herculanum, 
- * hiragino maru gothic pron, hiragino mincho pron, hiragino sans, hiragino sans gb, 
- * hoefler text, impact, inaimathi, itf devanagari, itf devanagari marathi, kailasa, 
- * kannada mn, kannada sangam mn, kefa, khmer mn, khmer sangam mn, kohinoor bangla, 
- * kohinoor devanagari, kohinoor gujarati, kohinoor telugu, kokonor, krungthep, 
- * kufistandardgk, lao mn, lao sangam mn, lucida grande, luminari, malayalam mn, 
- * malayalam sangam mn, marker felt, menlo, microsoft sans serif, mishafi, 
- * mishafi gold, monaco, monospaced, mshtakan, mukta mahee, muna, myanmar mn, 
- * myanmar sangam mn, nadeem, new peninim mt, noteworthy, noto nastaliq urdu, 
- * noto sans kannada, noto sans myanmar, noto sans oriya, noto serif myanmar, 
- * optima, oriya mn, oriya sangam mn, palatino, papyrus, party let, phosphate, 
- * pingfang hk, pingfang sc, pingfang tc, plantagenet cherokee, pt mono, pt sans, 
- * pt sans caption, pt sans narrow, pt serif, pt serif caption, raanana, rockwell, 
- * sana, sansserif, sathu, savoye let, serif, shree devanagari 714, signpainter, 
- * silom, sinhala mn, sinhala sangam mn, skia, snell roundhand, songti sc, 
- * songti tc, stix two math, stix two text, stsong, sukhumvit set, symbol, 
- * tahoma, tamil mn, tamil sangam mn, telugu mn, telugu sangam mn, thonburi, 
- * times new roman, trattatello, trebuchet ms, verdana, waseem, webdings, 
- * wingdings, wingdings 2, wingdings 3, zapf dingbats, zapfino
- */
