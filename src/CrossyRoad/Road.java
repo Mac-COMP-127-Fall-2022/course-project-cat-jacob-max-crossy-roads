@@ -11,6 +11,8 @@ public class Road extends Row {
     private ArrayList<Car> cars;
     double direction;
     double carSpeed;
+    Car car;
+    CanvasWindow canvas;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
@@ -20,6 +22,7 @@ public class Road extends Row {
         direction = (Math.random()>.5 ? 740 : -40);
         carSpeed = 50+ Math.random()*50;
         addCar(carSpeed);
+        //carInside();
 
     }
 
@@ -39,6 +42,13 @@ public class Road extends Row {
             this.add(car);
             cars.add(car);
         }
+    }
+
+    public void carInside(){
+        if (!(canvas.getElementAt(car.getCar().getCenter().getX() - 70,
+                car.getCar().getCenter().getY()) instanceof Car)){
+                    canvas.remove(car);
+            }
     }
 
     public ArrayList<Car> getCars(){
