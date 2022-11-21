@@ -10,7 +10,6 @@ public class Chicken {
     private Image chicken;
     private double x;
     private double y;
-    CrossyRoad thisGame;
 
     // private CanvasWindow canvas;
 
@@ -47,8 +46,6 @@ public class Chicken {
     public void moveUp() {
         y -= 70;
         chicken.setPosition(x, y);
-        thisGame.score++;
-
     }
 
     public void moveDown() {

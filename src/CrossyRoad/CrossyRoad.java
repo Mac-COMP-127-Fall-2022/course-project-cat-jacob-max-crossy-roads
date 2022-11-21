@@ -4,8 +4,6 @@ package CrossyRoad;
 
 import java.awt.Color;
 
-import javax.swing.JLabel;
-
 import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
 
@@ -17,6 +15,8 @@ public class CrossyRoad {
     private Chicken chicken;
     private RowManager rowManager;
     public static int score = 0;
+    GraphicsText scoreLabel = new GraphicsText();
+
     
 
     // canvas is x=700, y=700
@@ -60,6 +60,8 @@ public class CrossyRoad {
                 }
                 else if(!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),chicken.getChicken().getCenter().getY()-70) instanceof Ellipse)){
                     rowManager.moveRows();
+                    raiseScore();
+                    scoreLabel.setText("Score: " + score);
                 }
 
             } else if (event.getKey() == Key.DOWN_ARROW) {
@@ -93,14 +95,15 @@ public class CrossyRoad {
         // scoreLabel.setText();
 
 
-        GraphicsText scoreLabel = new GraphicsText();
-        scoreLabel = new GraphicsText();
         scoreLabel.setFont(FontStyle.BOLD, 30);
         scoreLabel.setText("Score: " + score);
         scoreLabel.setPosition(30,50);
         canvas.add(scoreLabel);
     }
-
+    
+    public void raiseScore(){
+        score++;
+    }
 
 
     public static void main(String[] args) {
