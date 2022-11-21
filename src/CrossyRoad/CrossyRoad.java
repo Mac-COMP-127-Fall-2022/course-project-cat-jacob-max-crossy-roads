@@ -34,6 +34,9 @@ public class CrossyRoad {
         rowManager = new RowManager(canvas);
 
         chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
+        while(canvas.getElementAt(chicken.getCenter()) instanceof Ellipse){
+            chicken.moveDown();
+        }
         chicken.addToCanvas(canvas);
 
         titleScreen();
@@ -82,14 +85,16 @@ public class CrossyRoad {
                     chicken.moveDown();
                 }
             }
-
-            canvas.remove(title);
-            canvas.remove(titleShadow);
+            if (score == 1){
+                canvas.remove(title);
+                canvas.remove(titleShadow);
+            }
         });
 
         canvas.animate(() -> {
             for (Road road : rowManager.getRoads()) {
-                if (Math.random() < .01) {
+                if (Math.random() < .01 && canvas.getElementAt(-30,road.getCenter().getY())==null && 
+                    canvas.getElementAt(730,road.getCenter().getY())==null) {
                     road.addCar(road.getCarSpeed());
                 }
                 for (Car car : road.getCars()) {

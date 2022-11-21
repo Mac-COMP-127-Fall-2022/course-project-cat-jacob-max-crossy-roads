@@ -89,14 +89,14 @@ public class Car extends GraphicsGroup {
     }
 
     public void animateCar( double dt, CanvasWindow canvas){
-        if (this.getPosition().getX() > 700 && x == -20){
+        if (this.getPosition().getX() > 700 && x == -40){
             this.removeAll();
         }
-        else if (this.getPosition().getX() < -20 && x == 720){
+        else if (this.getPosition().getX() < -40 && x == 740){
             this.removeAll();
         }
         else{
-            this.moveBy((x == -20 ? dt*carSpeed : -dt*carSpeed), 0);
+            this.moveBy((x == -40 ? dt*carSpeed : -dt*carSpeed), 0);
         }
     }
 

@@ -17,7 +17,7 @@ public class Road extends Row {
         cars = new ArrayList<Car>();
         this.y = y;
         drawLines(y);
-        direction = (Math.random()>.5 ? 720 : -20);
+        direction = (Math.random()>.5 ? 740 : -40);
         carSpeed = 50+ Math.random()*50;
         addCar(carSpeed);
 
