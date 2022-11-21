@@ -34,10 +34,12 @@ public class CrossyRoad {
         rowManager = new RowManager(canvas);
 
         chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
-        while(canvas.getElementAt(chicken.getCenter()) instanceof Ellipse){
-            chicken.moveDown();
+        while (canvas.getElementAt(chicken.getCenter()) instanceof Ellipse) {
+            canvas.remove(canvas.getElementAt(chicken.getCenter()));
+            ;
         }
         chicken.addToCanvas(canvas);
+
 
         titleScreen();
 
@@ -85,7 +87,7 @@ public class CrossyRoad {
                     chicken.moveDown();
                 }
             }
-            if (score == 1){
+            if (score == 1) {
                 canvas.remove(title);
                 canvas.remove(titleShadow);
             }
@@ -93,8 +95,8 @@ public class CrossyRoad {
 
         canvas.animate(() -> {
             for (Road road : rowManager.getRoads()) {
-                if (Math.random() < .01 && canvas.getElementAt(-30,road.getCenter().getY())==null && 
-                    canvas.getElementAt(730,road.getCenter().getY())==null) {
+                if (Math.random() < .01 && canvas.getElementAt(-30, road.getCenter().getY()) == null &&
+                    canvas.getElementAt(730, road.getCenter().getY()) == null) {
                     road.addCar(road.getCarSpeed());
                 }
                 for (Car car : road.getCars()) {
@@ -124,13 +126,13 @@ public class CrossyRoad {
         titleShadow.setFont("rockwell", FontStyle.BOLD, 80);
         titleShadow.setFillColor(Color.DARK_GRAY);
         titleShadow.setText("Crossy Roads");
-        titleShadow.setCenter(CANVAS_WIDTH/2+5, CANVAS_HEIGHT/2+5);
+        titleShadow.setCenter(CANVAS_WIDTH / 2 + 5, CANVAS_HEIGHT / 2 + 5);
         canvas.add(titleShadow);
 
         title.setFont("rockwell", FontStyle.BOLD, 80);
         title.setFillColor(Color.WHITE);
         title.setText("Crossy Roads");
-        title.setCenter(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+        title.setCenter(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
         canvas.add(title);
     }
 

@@ -9,15 +9,20 @@ public class Grass extends Row {
     public Grass(double y) {
         super(Color.GREEN.darker(), y);
         this.y = y;
-        addTrees();
+        addObjects();
     }
 
-    private void addTrees(){
-        for (int i = 35; i < 665; i+=70) {
-            if (Math.random()>=.8){
-                Tree tree = new Tree(i,y+5);
-                //PineTree tree = new PineTree(i, y+5);
+    private void addObjects() {
+        for (int i = 35; i < 665; i += 70) {
+            double randNum = Math.random();
+
+            if (randNum >= .7) {
+                Tree tree = new Tree(i, y + 5);
+                // PineTree tree = new PineTree(i, y+5);
                 this.add(tree);
+            } else if (randNum >= .6) {
+                Boulder boulder = new Boulder(i, y + 5);
+                this.add(boulder);
             }
         }
     }
