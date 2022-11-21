@@ -10,6 +10,7 @@ public class Road extends Row {
     double y;
     private ArrayList<Car> cars;
     double direction;
+    double carSpeed;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
@@ -17,7 +18,8 @@ public class Road extends Row {
         this.y = y;
         drawLines(y);
         direction = (Math.random()>.5 ? 720 : -20);
-        addCar();
+        carSpeed = 50+ Math.random()*50;
+        addCar(carSpeed);
 
     }
 
@@ -31,9 +33,9 @@ public class Road extends Row {
         }
     }
 
-    public void addCar(){
+    public void addCar(double carSpeed){
         if (Math.random()>=.1){
-            Car car = new Car(direction,y);
+            Car car = new Car(direction,y,carSpeed);
             this.add(car);
             cars.add(car);
         }

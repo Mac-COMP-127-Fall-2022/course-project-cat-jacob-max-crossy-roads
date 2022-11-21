@@ -16,10 +16,10 @@ public class Car extends GraphicsGroup {
     private double x;
     private double carSpeed;
 
-    public Car(double x, double y) {
+    public Car(double x, double y,double carSpeed) {
         super(x, y);
         this.x = x;
-        carSpeed = 50+ Math.random()*50;
+        this.carSpeed = carSpeed;
         if (x > 0){
             buildLeftFacingCar();
         } else {

@@ -15,16 +15,8 @@ public class CrossyRoad {
     private Chicken chicken;
     private RowManager rowManager;
     public static int score = 0;
-    GraphicsText scoreLabel = new GraphicsText();
-
-    
-
-    // canvas is x=700, y=700
-    // 10 rows on canvas so each row is x=700, y=70
-    // make objects a little smaller than row so 60 x 60
-    // make chicken a little smaller than objects so 50 x 50
-
-    // might need to change so its a grid? easier for intersections and movement?
+    private GraphicsText scoreLabel = new GraphicsText();
+    private Rectangle background = new Rectangle(20, 20, 155, 40);
 
     public CrossyRoad() {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -62,6 +54,9 @@ public class CrossyRoad {
                     rowManager.moveRows();
                     raiseScore();
                     scoreLabel.setText("Score: " + score);
+                    if (score >= 100){
+                        background.setSize(175, 40);
+                    }
                 }
 
             } else if (event.getKey() == Key.DOWN_ARROW) {
@@ -74,19 +69,22 @@ public class CrossyRoad {
 
         canvas.animate(()->{
             for (Road road : rowManager.getRoads()) {
-                if (Math.random()<.05){
-                    road.addCar();
+                if (Math.random()<.01){
+                    road.addCar(road.carSpeed);
                 }
                 for (Car car : road.getCars()) {
-                    car.animateCar(.1, canvas);
+                    car.animateCar(.1, canvas); 
                 }
             }
-                 
+            if (chicken.checkCollision(canvas)){
+                scoreLabel.setText("gameover");
+                canvas.pause(1000);
+                canvas.closeWindow();
+            }
         });
     }
 
     public void scoreTracker(){
-        Rectangle background = new Rectangle(20, 20, 155, 40);
         background.setFilled(true);
         background.setFillColor(Color.white);
         canvas.add(background);
