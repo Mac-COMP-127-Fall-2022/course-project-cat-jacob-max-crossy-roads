@@ -1,6 +1,9 @@
 package CrossyRoad;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import edu.macalester.graphics.*;
 
@@ -14,6 +17,7 @@ public class Car extends GraphicsGroup {
     private Ellipse rightWheel;
     private double x;
     private double carSpeed;
+    Random rand = new Random();
 
     public Car(double x, double y,double carSpeed) {
         super(x, y);
@@ -28,14 +32,18 @@ public class Car extends GraphicsGroup {
 
     private void buildLeftFacingCar() {
 
+        List<Color> moColors = colorList();
+        int x = rand.nextInt(10);
+        Color useColors = moColors.get(x);
+
         topBody = new Rectangle(CAR_WIDTH / 4, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
-        topBody.setStrokeColor(Color.RED.darker());
-        topBody.setFillColor(Color.RED.darker());
+        topBody.setStrokeColor(useColors);
+        topBody.setFillColor(useColors);
         this.add(topBody);
 
         bottomBody = new Rectangle(0, CAR_HEIGHT / 3, CAR_WIDTH, CAR_HEIGHT / 2);
-        bottomBody.setStrokeColor(Color.RED.darker());
-        bottomBody.setFillColor(Color.RED.darker());
+        bottomBody.setStrokeColor(useColors);
+        bottomBody.setFillColor(useColors);
         this.add(bottomBody);
 
         leftWheel = new Ellipse(CAR_WIDTH / 30, CAR_HEIGHT * 5 / 8, CAR_WIDTH / 3, CAR_HEIGHT / 3);
@@ -51,14 +59,18 @@ public class Car extends GraphicsGroup {
 
     private void buildRightFacingCar() {
 
+        List<Color> moColors = colorList();
+        int x = rand.nextInt(10);
+        Color useColors = moColors.get(x);
+
         topBody = new Rectangle(0, CAR_HEIGHT / 8, CAR_WIDTH * 3 / 4, CAR_HEIGHT / 2);
-        topBody.setStrokeColor(Color.RED.darker());
-        topBody.setFillColor(Color.RED.darker());
+        topBody.setStrokeColor(useColors);
+        topBody.setFillColor(useColors);
         this.add(topBody);
 
         bottomBody = new Rectangle(0, CAR_HEIGHT / 3, CAR_WIDTH, CAR_HEIGHT / 2);
-        bottomBody.setStrokeColor(Color.RED.darker());
-        bottomBody.setFillColor(Color.RED.darker());
+        bottomBody.setStrokeColor(useColors);
+        bottomBody.setFillColor(useColors);
         this.add(bottomBody);
 
         leftWheel = new Ellipse(CAR_WIDTH / 30, CAR_HEIGHT * 5 / 8, CAR_WIDTH / 3, CAR_HEIGHT / 3);
@@ -86,6 +98,21 @@ public class Car extends GraphicsGroup {
         else{
             this.moveBy((x == -20 ? dt*carSpeed : -dt*carSpeed), 0);
         }
+    }
+
+    public List<Color> colorList(){
+        List<Color> colors = new ArrayList<>();
+        colors.add(new Color(225,49,49));
+        colors.add(new Color(225,96,49));
+        colors.add(new Color(225,131,49));
+        colors.add(new Color(225,194,49));
+        colors.add(new Color(202,225,49));
+        colors.add(new Color(124,225,49));
+        colors.add(new Color(54,225,49));
+        colors.add(new Color(49,225,170));
+        colors.add(new Color(49,186,225));
+        colors.add(new Color(49,119,225));
+        return colors;
     }
 
 }
