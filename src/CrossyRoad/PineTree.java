@@ -19,6 +19,7 @@ public class PineTree extends GraphicsGroup{
         private Rectangle fourthLayer;
         private Rectangle top;
         private Ellipse circle;
+        private Color green = Color.green.darker().darker();
 
         
          //private Rectangle size;
@@ -39,33 +40,37 @@ public class PineTree extends GraphicsGroup{
         treeBase.setFillColor(Color.BLACK);
         this.add(treeBase);
 
-        // circle = new Ellipse(10, 30, 20, 20);
-        // this.add(circle);
+        
 
-        bottomLayer = new Rectangle(5, 45, 50 , TREE_HEIGHT / 8);
-        bottomLayer.setStrokeColor(Color.green.darker().darker());
-        bottomLayer.setFillColor(Color.green.darker().darker());
+        bottomLayer = new Rectangle(3, 45, 54 , TREE_HEIGHT / 8);
+        bottomLayer.setStrokeColor(green);
+        bottomLayer.setFillColor(green);
         this.add(bottomLayer);
 
-        secondLayer = new Rectangle(10, 37, 40, TREE_HEIGHT / 8);
-        secondLayer.setStrokeColor(Color.green.darker().darker());
-        secondLayer.setFillColor(Color.green.darker().darker());
+        secondLayer = new Rectangle(8, 37, 44, TREE_HEIGHT / 8);
+        secondLayer.setStrokeColor(green);
+        secondLayer.setFillColor(green);
         this.add(secondLayer);
 
-        thirdLayer = new Rectangle(15, 29, 30, TREE_HEIGHT / 8);
-        thirdLayer.setStrokeColor(Color.green.darker().darker());
-        thirdLayer.setFillColor(Color.green.darker().darker());
+        thirdLayer = new Rectangle(13, 29, 35, TREE_HEIGHT / 8);
+        thirdLayer.setStrokeColor(green);
+        thirdLayer.setFillColor(green);
         this.add(thirdLayer);
 
-        fourthLayer = new Rectangle(20, 21, 20, TREE_HEIGHT / 8);
-        fourthLayer.setStrokeColor(Color.green.darker().darker());
-        fourthLayer.setFillColor(Color.green.darker().darker());
+        fourthLayer = new Rectangle(17, 21, 26, TREE_HEIGHT / 8);
+        fourthLayer.setStrokeColor(green);
+        fourthLayer.setFillColor(green);
         this.add(fourthLayer);
 
-        top = new Rectangle(26, 13, 8, TREE_HEIGHT / 8);
-        top.setStrokeColor(Color.green.darker().darker());
-        top.setFillColor(Color.green.darker().darker());
+        top = new Rectangle(25, 13, 10, TREE_HEIGHT / 8);
+        top.setStrokeColor(green);
+        top.setFillColor(green);
         this.add(top);
+
+        circle = new Ellipse(15, 20, 30, 30);
+        circle.setStrokeColor(green);
+        circle.setFillColor(green);
+        this.add(circle);
     
         }
     

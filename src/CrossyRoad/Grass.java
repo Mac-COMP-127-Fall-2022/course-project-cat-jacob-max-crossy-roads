@@ -16,15 +16,15 @@ public class Grass extends Row {
         for (int i = 35; i < 665; i += 70) {
             double randNum = Math.random();
 
-            if (randNum >= .7) {
-                if (randNum >= .85){
+            if (randNum >= .8) {
+                if (randNum >= .9){
                 Tree tree = new Tree(i, y + 5);
                 this.add(tree);
                 }else{
                 PineTree tree = new PineTree(i, y+5);
                 this.add(tree);
                 }
-            } else if (randNum >= .6) {
+            } else if (randNum >= .7) {
                 Boulder boulder = new Boulder(i, y + 5);
                 this.add(boulder);
             }
