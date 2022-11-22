@@ -30,6 +30,7 @@ public class CrossyRoad {
         scoreLabel = new GraphicsText();
         title = new GraphicsText();
         titleShadow = new GraphicsText();
+        
 
         rowManager = new RowManager(canvas);
 
