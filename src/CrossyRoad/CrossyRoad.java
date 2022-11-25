@@ -36,8 +36,7 @@ public class CrossyRoad {
 
         chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
         while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
-            canvas.remove(canvas.getElementAt(chicken.getCenter()));
-            ;
+            chicken.moveDown();
         }
         chicken.addToCanvas(canvas);
 
