@@ -35,7 +35,7 @@ public class CrossyRoad {
         rowManager = new RowManager(canvas);
 
         chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
-        while (canvas.getElementAt(chicken.getCenter()) instanceof Ellipse) {
+        while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
             canvas.remove(canvas.getElementAt(chicken.getCenter()));
             ;
         }
@@ -89,8 +89,8 @@ public class CrossyRoad {
                 }
             }
             if (score == 1) {
-                canvas.remove(title);
-                canvas.remove(titleShadow);
+                title.moveBy(-700,0);
+                titleShadow.moveBy(-700,0);
             }
         });
 
