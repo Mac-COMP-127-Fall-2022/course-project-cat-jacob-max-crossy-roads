@@ -2,9 +2,11 @@ package CrossyRoad;
 
 
 import java.awt.Color;
+import java.nio.Buffer;
 
 import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
+import edu.macalester.graphics.ui.Button;
 
 public class CrossyRoad {
     public static final int CANVAS_WIDTH = 700;
@@ -15,10 +17,16 @@ public class CrossyRoad {
     private CanvasWindow canvas;
     private Chicken chicken;
     private RowManager rowManager;
-    private GraphicsText scoreLabel;
+    private GraphicsGroup scoreLabel;
     private Rectangle scoreBackground;
+    private GraphicsText scoreText;
     private GraphicsText title;
     private GraphicsText titleShadow;
+    private GraphicsText gameOverText;
+    private GraphicsText gameoverScore;
+    private Button playAgain;
+    public boolean animation = true;
+
 
 
     // make it so trees don't populate on top of chicken
@@ -26,8 +34,9 @@ public class CrossyRoad {
 
     public CrossyRoad() {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        scoreLabel = new GraphicsGroup();
+        scoreText = new GraphicsText();
         scoreBackground = new Rectangle(20, 20, 155, 40);
-        scoreLabel = new GraphicsText();
         title = new GraphicsText();
         titleShadow = new GraphicsText();
         
@@ -52,41 +61,17 @@ public class CrossyRoad {
         // https://stackoverflow.com/questions/541749/how-to-determine-an-objects-class used to do the
         // instanceof check
         canvas.onKeyDown(event -> {
-
-            if (event.getKey() == Key.LEFT_ARROW) {
-                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX() - 70,
-                    chicken.getChicken().getCenter().getY()) instanceof Ellipse)) {
-                    chicken.moveLeft();
-                }
-
-            } else if (event.getKey() == Key.RIGHT_ARROW) {
-                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX() + 70,
-                    chicken.getChicken().getCenter().getY()) instanceof Ellipse)) {
-                    chicken.moveRight();
-                }
-
-
-            } else if (event.getKey() == Key.UP_ARROW) {
-                if (chicken.getChicken().getY() > CANVAS_HEIGHT * 2 / 3 + 35) {
+            chicken.move(canvas,event,animation);
+            if (event.getKey() == Key.UP_ARROW && animation) {
+                if (chicken.getChicken().getY() > canvas.getHeight() * 2 / 3 + 35) {
                     chicken.moveUp();
-
+    
                 } else if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
                     chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse)) {
                     rowManager.moveRows();
                     raiseScore();
-                    scoreLabel.setText("Score: " + score);
-                    if (score >= 100) {
-                        scoreBackground.setSize(175, 40);
                     }
                 }
-
-            } else if (event.getKey() == Key.DOWN_ARROW) {
-                if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
-                    chicken.getChicken().getCenter().getY() + 70) instanceof Ellipse) &&
-                    chicken.getChicken().getY() < 600) {
-                    chicken.moveDown();
-                }
-            }
             if (score == 1) {
                 title.moveBy(-700,0);
                 titleShadow.moveBy(-700,0);
@@ -96,17 +81,19 @@ public class CrossyRoad {
         canvas.animate(() -> {
             for (Road road : rowManager.getRoads()) {
                 if (Math.random() < .01 && canvas.getElementAt(-30, road.getCenter().getY()) == null &&
-                    canvas.getElementAt(730, road.getCenter().getY()) == null) {
+                    canvas.getElementAt(730, road.getCenter().getY()) == null && animation) {
                     road.addCar(road.getCarSpeed());
                 }
                 for (Car car : road.getCars()) {
-                    car.animateCar(.1, canvas);
+                    if(animation){
+                        car.animateCar(.1, canvas);
+                    }
                 }
             }
-            if (chicken.checkCollision(canvas)) {
-                scoreLabel.setText("gameover");
-                canvas.pause(1000);
-                canvas.closeWindow();
+            if (chicken.checkCollision(canvas) && animation) {
+                canvas.remove(scoreLabel);
+                animation = false;
+                gameOver();
             }
         });
     }
@@ -114,12 +101,29 @@ public class CrossyRoad {
     public void scoreTracker() {
         scoreBackground.setFilled(true);
         scoreBackground.setFillColor(Color.WHITE);
-        canvas.add(scoreBackground);
+        scoreLabel.add(scoreBackground);
 
-        scoreLabel.setFont(FontStyle.BOLD, 30);
-        scoreLabel.setText("Score: " + score);
-        scoreLabel.setPosition(30, 50);
+        scoreText.setFont(FontStyle.BOLD, 30);
+        scoreText.setText("Score: " + score);
+        scoreText.setPosition(30, 50);
+        scoreLabel.add(scoreText);
         canvas.add(scoreLabel);
+    }
+
+    public void gameOver(){
+        gameOverText = new GraphicsText("Game Over!");
+        gameOverText.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY()-30);
+        gameoverScore = new GraphicsText("Score: " + score);
+        gameoverScore.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY()-10);
+        playAgain = new Button("Play Again");
+        playAgain.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY());
+        playAgain.onClick(()->{
+            canvas.removeAll();
+            new CrossyRoad();
+        canvas.add(gameOverText);
+        canvas.add(gameoverScore);
+        canvas.add(playAgain);
+        });
     }
 
     public void titleScreen() {
@@ -138,6 +142,10 @@ public class CrossyRoad {
 
     public void raiseScore() {
         score++;
+        scoreText.setText("Score: " + score);
+        if (score >= 100) {
+            scoreBackground.setSize(175, 40);
+        }
     }
 
     public static void main(String[] args) {

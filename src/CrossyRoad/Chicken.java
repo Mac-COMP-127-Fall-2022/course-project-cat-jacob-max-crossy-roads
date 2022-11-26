@@ -1,6 +1,8 @@
 package CrossyRoad;
 
 import edu.macalester.graphics.*;
+import edu.macalester.graphics.events.Key;
+import edu.macalester.graphics.events.KeyboardEvent;
 
 public class Chicken extends Image{
 
@@ -21,6 +23,30 @@ public class Chicken extends Image{
         setImagePath("chicken.png");
         setMaxHeight(CHICKEN_HEIGHT);
         setMaxWidth(CHICKEN_WIDTH);
+    }
+
+    public void move(CanvasWindow canvas, KeyboardEvent event, boolean animation){
+        if (event.getKey() == Key.LEFT_ARROW && animation) {
+            if (!(canvas.getElementAt(getChicken().getCenter().getX() - 70,
+                getChicken().getCenter().getY()) instanceof Ellipse)) {
+                moveLeft();
+            }
+
+        } else if (event.getKey() == Key.RIGHT_ARROW && animation) {
+            if (!(canvas.getElementAt(getChicken().getCenter().getX() + 70,
+                getChicken().getCenter().getY()) instanceof Ellipse)) {
+                moveRight();
+            }
+
+
+        }
+         else if (event.getKey() == Key.DOWN_ARROW && animation) {
+            if (!(canvas.getElementAt(getChicken().getCenter().getX(),
+                getChicken().getCenter().getY() + 70) instanceof Ellipse) &&
+                getChicken().getY() < 600) {
+                moveDown();
+            }
+        }
     }
 
     public void moveLeft() {

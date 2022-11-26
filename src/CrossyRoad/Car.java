@@ -17,7 +17,7 @@ public class Car extends GraphicsGroup {
     private Ellipse rightWheel;
     private double x;
     private double carSpeed;
-    Random rand = new Random();
+    private Random rand = new Random();
 
     public Car(double x, double y,double carSpeed) {
         super(x, y);
