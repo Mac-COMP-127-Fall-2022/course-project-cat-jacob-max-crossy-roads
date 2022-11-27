@@ -2,7 +2,6 @@ package CrossyRoad;
 
 
 import java.awt.Color;
-import java.nio.Buffer;
 
 import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
@@ -18,6 +17,7 @@ public class CrossyRoad {
     private Chicken chicken;
     private RowManager rowManager;
     private GraphicsGroup scoreLabel;
+    private GraphicsGroup gameOver = new GraphicsGroup();
     private Rectangle scoreBackground;
     private GraphicsText scoreText;
     private GraphicsText title;
@@ -27,33 +27,23 @@ public class CrossyRoad {
     private Button playAgain;
     public boolean animation = true;
 
-
-
-    // make it so trees don't populate on top of chicken
-    // cars arent inside each other
-
     public CrossyRoad() {
+        gameoverScore = new GraphicsText();
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
         scoreLabel = new GraphicsGroup();
         scoreText = new GraphicsText();
         scoreBackground = new Rectangle(20, 20, 155, 40);
         title = new GraphicsText();
         titleShadow = new GraphicsText();
-        
-
         rowManager = new RowManager(canvas);
-
         chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
         while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
             chicken.moveDown();
         }
         chicken.addToCanvas(canvas);
 
-
         titleScreen();
-
         scoreTracker();
-
         run();
     }
 
@@ -62,22 +52,22 @@ public class CrossyRoad {
         // instanceof check
         canvas.onKeyDown(event -> {
             chicken.move(canvas,event,animation);
-            if (event.getKey() == Key.UP_ARROW && animation) {
+            if (event.getKey() == Key.UP_ARROW && animation &&
+            !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse)) {
                 if (chicken.getChicken().getY() > canvas.getHeight() * 2 / 3 + 35) {
                     chicken.moveUp();
-    
+
                 } else if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
                     chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse)) {
                     rowManager.moveRows();
                     raiseScore();
                     }
+                if (score == 1) {
+                    canvas.remove(title);
+                    canvas.remove(titleShadow);
+                    }
                 }
-            if (score == 1) {
-                title.moveBy(-700,0);
-                titleShadow.moveBy(-700,0);
-            }
         });
-
         canvas.animate(() -> {
             for (Road road : rowManager.getRoads()) {
                 if (Math.random() < .01 && canvas.getElementAt(-30, road.getCenter().getY()) == null &&
@@ -92,8 +82,8 @@ public class CrossyRoad {
             }
             if (chicken.checkCollision(canvas) && animation) {
                 canvas.remove(scoreLabel);
-                animation = false;
                 gameOver();
+                animation = false;
             }
         });
     }
@@ -102,7 +92,6 @@ public class CrossyRoad {
         scoreBackground.setFilled(true);
         scoreBackground.setFillColor(Color.WHITE);
         scoreLabel.add(scoreBackground);
-
         scoreText.setFont(FontStyle.BOLD, 30);
         scoreText.setText("Score: " + score);
         scoreText.setPosition(30, 50);
@@ -112,18 +101,30 @@ public class CrossyRoad {
 
     public void gameOver(){
         gameOverText = new GraphicsText("Game Over!");
-        gameOverText.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY()-30);
-        gameoverScore = new GraphicsText("Score: " + score);
-        gameoverScore.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY()-10);
+        gameOverText.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-30);
+        gameoverScore.setText("Score: " + score);
+        gameoverScore.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-10);
         playAgain = new Button("Play Again");
-        playAgain.setPosition(canvas.getCenter().getX(),canvas.getCenter().getY());
+        playAgain.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()+10);
         playAgain.onClick(()->{
             canvas.removeAll();
-            new CrossyRoad();
-        canvas.add(gameOverText);
-        canvas.add(gameoverScore);
-        canvas.add(playAgain);
+            score=0;
+            rowManager = new RowManager(canvas);
+            // chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
+            chicken.setPosition(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
+            while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
+                chicken.moveDown();
+            }
+            chicken.addToCanvas(canvas);
+            animation=true;
+
+            titleScreen();
+            scoreTracker();
         });
+        gameOver.add(gameoverScore);
+        gameOver.add(gameOverText);
+        gameOver.add(playAgain);
+        canvas.add(gameOver);
     }
 
     public void titleScreen() {
