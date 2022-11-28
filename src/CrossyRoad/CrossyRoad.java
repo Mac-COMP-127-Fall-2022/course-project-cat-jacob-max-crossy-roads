@@ -19,6 +19,7 @@ public class CrossyRoad {
     private GraphicsGroup scoreLabel;
     private GraphicsGroup gameOver = new GraphicsGroup();
     private Rectangle scoreBackground;
+    private Rectangle gameOverBackground;
     private GraphicsText scoreText;
     private GraphicsText title;
     private GraphicsText titleShadow;
@@ -33,6 +34,7 @@ public class CrossyRoad {
         scoreLabel = new GraphicsGroup();
         scoreText = new GraphicsText();
         scoreBackground = new Rectangle(20, 20, 155, 40);
+        gameOverBackground = new Rectangle(0,0,800,120);
         title = new GraphicsText();
         titleShadow = new GraphicsText();
         rowManager = new RowManager(canvas);
@@ -100,12 +102,9 @@ public class CrossyRoad {
     }
 
     public void gameOver(){
-        gameOverText = new GraphicsText("Game Over!");
-        gameOverText.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-30);
-        gameoverScore.setText("Score: " + score);
-        gameoverScore.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-10);
+        gameOverText();
         playAgain = new Button("Play Again");
-        playAgain.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()+10);
+        playAgain.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()+20);
         playAgain.onClick(()->{
             canvas.removeAll();
             score=0;
@@ -121,8 +120,6 @@ public class CrossyRoad {
             titleScreen();
             scoreTracker();
         });
-        gameOver.add(gameoverScore);
-        gameOver.add(gameOverText);
         gameOver.add(playAgain);
         canvas.add(gameOver);
     }
@@ -147,6 +144,22 @@ public class CrossyRoad {
         if (score >= 100) {
             scoreBackground.setSize(175, 40);
         }
+    }
+
+    public void gameOverText(){
+        gameOverBackground.setFilled(true);
+        gameOverBackground.setFillColor(Color.WHITE);
+        gameOverBackground.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-60);
+        gameOverText = new GraphicsText("GAME OVER!");
+        gameOverText.setFont("rockwell", FontStyle.BOLD, 80);
+        gameOverText.setFillColor(Color.RED.darker());
+        gameOverText.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-75);
+        gameoverScore.setText("Score: " + score);
+        gameoverScore.setFont("rockwell", FontStyle.BOLD, 30);
+        gameoverScore.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-20);
+        gameOver.add(gameOverBackground);
+        gameOver.add(gameoverScore);
+        gameOver.add(gameOverText);
     }
 
     public static void main(String[] args) {

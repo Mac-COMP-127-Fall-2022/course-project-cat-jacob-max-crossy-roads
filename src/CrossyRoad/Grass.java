@@ -17,7 +17,7 @@ public class Grass extends Row {
             double randNum = Math.random();
 
             if (randNum >= .8) {
-                if (randNum >= .95){
+                if (randNum >= .9){
                     Tree tree = new Tree(i, y + 5);
                     this.add(tree);
                 }else{
