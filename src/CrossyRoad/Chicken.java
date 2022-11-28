@@ -28,13 +28,17 @@ public class Chicken extends Image{
     public void move(CanvasWindow canvas, KeyboardEvent event, boolean animation){
         if (event.getKey() == Key.LEFT_ARROW && animation) {
             if (!(canvas.getElementAt(getChicken().getCenter().getX() - 70,
-                getChicken().getCenter().getY()) instanceof Ellipse)) {
+                getChicken().getCenter().getY()) instanceof Ellipse) &&
+                !(canvas.getElementAt(getChicken().getCenter().getX() - 70,
+                getChicken().getCenter().getY()) instanceof Image)) {
                 moveLeft();
             }
 
         } else if (event.getKey() == Key.RIGHT_ARROW && animation) {
             if (!(canvas.getElementAt(getChicken().getCenter().getX() + 70,
-                getChicken().getCenter().getY()) instanceof Ellipse)) {
+                getChicken().getCenter().getY()) instanceof Ellipse) &&
+                !(canvas.getElementAt(getChicken().getCenter().getX() + 70,
+                getChicken().getCenter().getY()) instanceof Image)) {
                 moveRight();
             }
 
@@ -43,6 +47,8 @@ public class Chicken extends Image{
          else if (event.getKey() == Key.DOWN_ARROW && animation) {
             if (!(canvas.getElementAt(getChicken().getCenter().getX(),
                 getChicken().getCenter().getY() + 70) instanceof Ellipse) &&
+                !(canvas.getElementAt(getChicken().getCenter().getX(),
+                getChicken().getCenter().getY() + 70) instanceof Image) &&
                 getChicken().getY() < 600) {
                 moveDown();
             }
