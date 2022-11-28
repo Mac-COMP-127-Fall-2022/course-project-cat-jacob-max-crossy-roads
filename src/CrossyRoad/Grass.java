@@ -24,7 +24,7 @@ public class Grass extends Row {
                     PineTree tree = new PineTree(i, y+5);
                     this.add(tree);
                 }
-            } else if (randNum >= .95) {
+            } else if (randNum <= .05) {
                 Boulder boulder = new Boulder(i, y + 5);
                 this.add(boulder);
             }

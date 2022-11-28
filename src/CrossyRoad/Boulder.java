@@ -1,21 +1,18 @@
 package CrossyRoad;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Image;
 // import edu.macalester.graphics.Rectangle;
-import java.awt.Color;
 
 
 public class Boulder extends GraphicsGroup {
 
-    private static final double BOULDER_WIDTH = 60;
-    private static final double BOUDLER_HEIGHT = 60;
+    private static final double BOULDER_WIDTH = 55;
+    private static final double BOUDLER_HEIGHT = 55;
 
     private Image boulderIcon;
     // private Rectangle size;
-    private Ellipse boulder;
 
     public Boulder(double x, double y) {
         super(x, y);
@@ -28,11 +25,6 @@ public class Boulder extends GraphicsGroup {
         // to test proportions:
         // size = new Rectangle(0,0,BOULDER_WIDTH, BOUDLER_HEIGHT);
         // this.add(size);
-
-        boulder = new Ellipse(BOULDER_WIDTH / 3, BOUDLER_HEIGHT / 2, BOULDER_WIDTH / 4, BOUDLER_HEIGHT / 4);
-        boulder.setStrokeColor(Color.BLACK);
-        boulder.setFillColor(Color.BLACK);
-        this.add(boulder);
 
         boulderIcon = new Image(0, BOUDLER_HEIGHT / 2 - 10);
         boulderIcon.setImagePath("boulders.png");

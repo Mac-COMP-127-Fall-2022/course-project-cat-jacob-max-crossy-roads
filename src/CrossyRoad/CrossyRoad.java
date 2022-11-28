@@ -27,6 +27,7 @@ public class CrossyRoad {
     private GraphicsText gameoverScore;
     private Button playAgain;
     public boolean animation = true;
+    public boolean titleOnCanvas = true;
 
     public CrossyRoad() {
         gameoverScore = new GraphicsText();
@@ -54,23 +55,29 @@ public class CrossyRoad {
         // instanceof check
         canvas.onKeyDown(event -> {
             chicken.move(canvas,event,animation);
-            if (event.getKey() == Key.UP_ARROW && animation &&
-            !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse)) {
-                if (chicken.getChicken().getY() > canvas.getHeight() * 2 / 3 + 35) {
+            if (event.getKey() == Key.UP_ARROW && animation) {
+                if (chicken.getChicken().getY() > canvas.getHeight() * 2 / 3 + 35 &&
+                !(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
+                    chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse) &&
+                    !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), 
+                    chicken.getChicken().getCenter().getY() - 70) instanceof Image)) {
                     chicken.moveUp();
 
                 } else if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
-                    chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse)) {
+                    chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse) &&
+                    !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), 
+                    chicken.getChicken().getCenter().getY() - 70) instanceof Image)) {
                     rowManager.moveRows();
                     raiseScore();
-                    }
-                if (score == 1) {
-                    canvas.remove(title);
-                    canvas.remove(titleShadow);
                     }
                 }
         });
         canvas.animate(() -> {
+            if (score == 1 && titleOnCanvas) {
+                canvas.remove(title);
+                canvas.remove(titleShadow);
+                titleOnCanvas=false;
+                }
             for (Road road : rowManager.getRoads()) {
                 if (Math.random() < .01 && canvas.getElementAt(-30, road.getCenter().getY()) == null &&
                     canvas.getElementAt(730, road.getCenter().getY()) == null && animation) {
@@ -116,6 +123,7 @@ public class CrossyRoad {
             }
             chicken.addToCanvas(canvas);
             animation=true;
+            titleOnCanvas=true;
 
             titleScreen();
             scoreTracker();
