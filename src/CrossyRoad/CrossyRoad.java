@@ -18,8 +18,8 @@ public class CrossyRoad {
     private RowManager rowManager;
     private GraphicsGroup scoreLabel;
     private GraphicsGroup gameOver = new GraphicsGroup();
-    private Rectangle scoreBackground;
-    private Rectangle gameOverBackground;
+    private Rectangle scoreBackground = new Rectangle(20, 20, 155, 40);
+    private Rectangle gameOverBackground = new Rectangle(0,0,800,120);
     private GraphicsText scoreText;
     private GraphicsText title;
     private GraphicsText titleShadow;
@@ -34,8 +34,6 @@ public class CrossyRoad {
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
         scoreLabel = new GraphicsGroup();
         scoreText = new GraphicsText();
-        scoreBackground = new Rectangle(20, 20, 155, 40);
-        gameOverBackground = new Rectangle(0,0,800,120);
         title = new GraphicsText();
         titleShadow = new GraphicsText();
         rowManager = new RowManager(canvas);
