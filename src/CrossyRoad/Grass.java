@@ -18,14 +18,14 @@ public class Grass extends Row {
 
             if (randNum >= .8) {
                 if (randNum >= .9){
-                    Tree tree = new Tree(i, y + 5);
+                    Tree tree = new Tree(i, y);
                     this.add(tree);
                 }else{
-                    PineTree tree = new PineTree(i, y+5);
+                    PineTree tree = new PineTree(i, y);
                     this.add(tree);
                 }
             } else if (randNum <= .05) {
-                Boulder boulder = new Boulder(i, y + 20);
+                Boulder boulder = new Boulder(i, y);
                 this.add(boulder);
             }
         }
