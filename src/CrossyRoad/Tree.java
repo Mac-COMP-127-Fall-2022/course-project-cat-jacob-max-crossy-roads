@@ -26,14 +26,14 @@ public class Tree extends GraphicsGroup {
     private void buildTree() {
         // to test proportions:
         // size = new Rectangle(0,0,TREE_WIDTH, TREE_HEIGHT);
-        // treeGroup.add(size);
+        // this.add(size);
 
-        treeBase = new Rectangle(TREE_WIDTH * 5 / 12, TREE_HEIGHT * 3 / 4, TREE_WIDTH / 6, TREE_HEIGHT / 4);
+        treeBase = new Rectangle(TREE_WIDTH * 5 / 12, TREE_HEIGHT * 3 / 4, TREE_WIDTH / 6, TREE_HEIGHT / 5);
         treeBase.setStrokeColor(Color.BLACK);
         treeBase.setFillColor(Color.BLACK);
         this.add(treeBase);
 
-        leaf = new Ellipse(TREE_WIDTH / 8, 0, TREE_WIDTH * 3 / 4, TREE_HEIGHT * 3 / 4);
+        leaf = new Ellipse(TREE_WIDTH / 7, 8, TREE_WIDTH * 2 / 3, TREE_HEIGHT * 2 / 3);
         leaf.setStrokeColor(Color.GREEN);
         leaf.setFillColor(Color.GREEN);
         this.add(leaf);
