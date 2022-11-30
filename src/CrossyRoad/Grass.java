@@ -25,7 +25,7 @@ public class Grass extends Row {
                     this.add(tree);
                 }
             } else if (randNum <= .05) {
-                Boulder boulder = new Boulder(i, y + 5);
+                Boulder boulder = new Boulder(i, y + 20);
                 this.add(boulder);
             }
         }
