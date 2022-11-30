@@ -8,8 +8,8 @@ import edu.macalester.graphics.Image;
 
 public class Boulder extends GraphicsGroup {
 
-    private static final double BOULDER_WIDTH = 55;
-    private static final double BOUDLER_HEIGHT = 55;
+    private static final double BOULDER_WIDTH = 50;
+    private static final double BOUDLER_HEIGHT = 50;
 
     private Image boulderIcon;
     // private Rectangle size;
@@ -26,7 +26,7 @@ public class Boulder extends GraphicsGroup {
         // size = new Rectangle(0,0,BOULDER_WIDTH, BOUDLER_HEIGHT);
         // this.add(size);
 
-        boulderIcon = new Image(0, BOUDLER_HEIGHT / 2 - 10);
+        boulderIcon = new Image(0, 0);
         boulderIcon.setImagePath("boulders.png");
         boulderIcon.setMaxHeight(BOULDER_WIDTH);
         boulderIcon.setMaxWidth(BOUDLER_HEIGHT);

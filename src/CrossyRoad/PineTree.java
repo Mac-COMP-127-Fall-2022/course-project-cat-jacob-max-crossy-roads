@@ -7,11 +7,13 @@ import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.Image;
 
 public class PineTree extends GraphicsGroup{
 
-        private static final double TREE_WIDTH = 60;
-        private static final double TREE_HEIGHT = 60;
+        private static final double TREE_WIDTH = 70;
+        private static final double TREE_HEIGHT = 70;
+        private Image pine;
         private Rectangle treeBase;
         private Rectangle bottomLayer;
         private Rectangle secondLayer;
@@ -32,8 +34,8 @@ public class PineTree extends GraphicsGroup{
     
         private void buildTree() {
             // to test proportions:
-            //size = new Rectangle(0,0,TREE_WIDTH, TREE_HEIGHT);
-            //treeGroup.add(size);
+            // size = new Rectangle(0,0,TREE_WIDTH, TREE_HEIGHT);
+            // treeGroup.add(size);
     
         treeBase = new Rectangle(25, 48, TREE_WIDTH /6, TREE_HEIGHT / 4);
         treeBase.setStrokeColor(Color.BLACK);
@@ -72,6 +74,11 @@ public class PineTree extends GraphicsGroup{
         circle.setFillColor(green);
         this.add(circle);
     
+        // pine = new Image(0, 0);
+        // pine.setImagePath("alt_pinetree.png");
+        // pine.setMaxHeight(TREE_WIDTH);
+        // pine.setMaxWidth(TREE_HEIGHT);
+        // this.add(pine);
         }
     
         public void addToCanvas(CanvasWindow canvas) {

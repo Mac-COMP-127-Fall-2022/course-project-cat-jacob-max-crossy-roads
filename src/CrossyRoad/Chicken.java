@@ -31,6 +31,7 @@ public class Chicken extends Image{
                 getChicken().getCenter().getY()) instanceof Ellipse) &&
                 !(canvas.getElementAt(getChicken().getCenter().getX() - 70,
                 getChicken().getCenter().getY()) instanceof Image)) {
+                setImagePath("chicken.png");
                 moveLeft();
             }
 
@@ -39,6 +40,7 @@ public class Chicken extends Image{
                 getChicken().getCenter().getY()) instanceof Ellipse) &&
                 !(canvas.getElementAt(getChicken().getCenter().getX() + 70,
                 getChicken().getCenter().getY()) instanceof Image)) {
+                setImagePath("rightfacingchicken.png");
                 moveRight();
             }
 
