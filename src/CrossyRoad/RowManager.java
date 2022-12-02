@@ -1,16 +1,18 @@
 package CrossyRoad;
 
 import java.util.ArrayList;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
-
 
 public class RowManager {
     private GraphicsGroup rows;
     private ArrayList<Road> roads;
     private ArrayList<Grass> grasses;
-
+    
+/**
+* Creates array list to hold roads and grass rows to be set set 
+* up and added to canvas
+*/
     public RowManager(CanvasWindow canvas) {
         rows = new GraphicsGroup();
         roads = new ArrayList<Road>();
@@ -20,15 +22,13 @@ public class RowManager {
     }
 
     public void setUpRows() {
-        for (int i = 0; i <= 630; i += 70) {
-
-            if (i > 280) {
+        for (int i = 0; i <= 630; i += 70){
+            if (i > 280){
                 rows.add(new Grass(i));
-            } else {
+            }else {
                 randomRow(i);
             }
         }
-
     }
 
     public void moveRows() {
@@ -39,23 +39,26 @@ public class RowManager {
                 ((Row) row).removeAll();
             }
         });
-
         randomRow(0);
     }
 
+/**
+* Randomly generates a number that deteremines which type 
+* of row will be added to canvas, slight preference to grass 
+*/
     public void randomRow(double y) {
-        if (Math.random() >= .4) {
+        if (Math.random() >= .4){
             Road road = new Road(y);
             rows.add(road);
             roads.add(road);
-        } else {
+        }else{
             Grass grass = new Grass(y);
             rows.add(grass);
             grasses.add(grass);
         }
     }
 
-    public GraphicsGroup getRows(){
+    public GraphicsGroup getRows() {
         return rows;
     }
     
