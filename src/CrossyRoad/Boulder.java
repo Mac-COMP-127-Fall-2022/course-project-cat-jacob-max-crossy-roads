@@ -30,6 +30,7 @@ public class Boulder extends GraphicsGroup {
         boulderIcon.setImagePath("boulders.png");
         boulderIcon.setMaxHeight(BOULDER_WIDTH);
         boulderIcon.setMaxWidth(BOUDLER_HEIGHT);
+        boulderIcon.setCenter(BOULDER_WIDTH/2, BOUDLER_HEIGHT*4/5);
         this.add(boulderIcon);
 
     }

@@ -54,17 +54,17 @@ public class CrossyRoad {
         canvas.onKeyDown(event -> {
             chicken.move(canvas,event,animation);
             if (event.getKey() == Key.UP_ARROW && animation) {
-                if (chicken.getChicken().getY() > canvas.getHeight() * 2 / 3 + 35 &&
-                !(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
-                    chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse) &&
-                    !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), 
-                    chicken.getChicken().getCenter().getY() - 70) instanceof Image)) {
+                if (chicken.getY() > canvas.getHeight() * 2 / 3 + 35 &&
+                !(canvas.getElementAt(chicken.getCenter().getX(),
+                    chicken.getCenter().getY() - 70) instanceof Ellipse) &&
+                    !(canvas.getElementAt(chicken.getCenter().getX(), 
+                    chicken.getCenter().getY() - 70) instanceof Image)) {
                     chicken.moveUp();
 
-                } else if (!(canvas.getElementAt(chicken.getChicken().getCenter().getX(),
-                    chicken.getChicken().getCenter().getY() - 70) instanceof Ellipse) &&
-                    !(canvas.getElementAt(chicken.getChicken().getCenter().getX(), 
-                    chicken.getChicken().getCenter().getY() - 70) instanceof Image)) {
+                } else if (!(canvas.getElementAt(chicken.getCenter().getX(),
+                    chicken.getCenter().getY() - 70) instanceof Ellipse) &&
+                    !(canvas.getElementAt(chicken.getCenter().getX(), 
+                    chicken.getCenter().getY() - 70) instanceof Image)) {
                     rowManager.moveRows();
                     raiseScore();
                     }
@@ -109,13 +109,12 @@ public class CrossyRoad {
     public void gameOver(){
         gameOverText();
         playAgain = new Button("Play Again");
-        playAgain.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()+20);
+        playAgain.setCenter(350,370);
         playAgain.onClick(()->{
             canvas.removeAll();
             score=0;
             rowManager = new RowManager(canvas);
-            // chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
-            chicken.setPosition(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
+            chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
             while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
                 chicken.moveDown();
             }
@@ -155,14 +154,14 @@ public class CrossyRoad {
     public void gameOverText(){
         gameOverBackground.setFilled(true);
         gameOverBackground.setFillColor(Color.WHITE);
-        gameOverBackground.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-60);
+        gameOverBackground.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-60);
         gameOverText = new GraphicsText("GAME OVER!");
         gameOverText.setFont("rockwell", FontStyle.BOLD, 80);
         gameOverText.setFillColor(Color.RED.darker());
-        gameOverText.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-75);
+        gameOverText.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-75);
         gameoverScore.setText("Score: " + score);
         gameoverScore.setFont("rockwell", FontStyle.BOLD, 30);
-        gameoverScore.setCenter(canvas.getCenter().getX(),canvas.getCenter().getY()-20);
+        gameoverScore.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-20);
         gameOver.add(gameOverBackground);
         gameOver.add(gameoverScore);
         gameOver.add(gameOverText);
