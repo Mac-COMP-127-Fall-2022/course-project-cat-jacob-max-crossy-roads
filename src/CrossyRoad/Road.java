@@ -2,17 +2,15 @@ package CrossyRoad;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
 import edu.macalester.graphics.*;
 
-
 public class Road extends Row {
-    double y;
+    private double y;
     private ArrayList<Car> cars;
-    double direction;
-    double carSpeed;
-    Car car;
-    CanvasWindow canvas;
+    private double direction;
+    private double carSpeed;
+    public Car car;
+    private CanvasWindow canvas;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
