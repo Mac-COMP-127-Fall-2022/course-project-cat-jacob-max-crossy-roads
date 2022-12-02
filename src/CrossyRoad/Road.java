@@ -1,6 +1,7 @@
 package CrossyRoad;
 
 import java.awt.Color;
+import java.beans.VetoableChangeListener;
 import java.util.ArrayList;
 
 import edu.macalester.graphics.*;
@@ -36,16 +37,22 @@ public class Road extends Row {
     }
 
     public void addCar(double carSpeed){
-        if (Math.random()>=.1 &&
-            carInside()){
+        if (Math.random()>=.1){
             Car car = new Car(direction,y,carSpeed);
-            this.add(car);
-            cars.add(car);
+            if (carNotInside(car)){
+                this.add(car);
+                cars.add(car);
+            }
         }
     }
 
-    public boolean carInside(){
-        return (canvas != null ? canvas.getElementAt((direction>0 ? 720 : -20),y).getWidth()==700 : true);
+    public boolean carNotInside(Car car){
+        for (Car vehicle : cars) {
+            if ((direction>0 ? vehicle.getX()+vehicle.getWidth()>695 : vehicle.getX()<5)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public ArrayList<Car> getCars(){
