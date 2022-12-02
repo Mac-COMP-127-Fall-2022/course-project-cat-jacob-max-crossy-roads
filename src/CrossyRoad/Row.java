@@ -2,7 +2,6 @@ package CrossyRoad;
 
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
-
 import java.awt.Color;
 
 public abstract class Row extends GraphicsGroup {
@@ -10,8 +9,11 @@ public abstract class Row extends GraphicsGroup {
     public static final double ROW_HEIGHT = 70;
     public static final double ROW_WIDTH = CrossyRoad.CANVAS_WIDTH;
 
-
-    public Row(Color color, double y){
+/**
+* Creates row and lets the y and color to be variables so to be changed
+* depending on the type of row that is needed
+*/ 
+    public Row(Color color, double y) {
         super();
         drawRow(y, color);
     }
@@ -24,7 +26,7 @@ public abstract class Row extends GraphicsGroup {
         super.add(row);
     }
 
-    public void setRowPos(double pos){
+    public void setRowPos(double pos) {
         this.setPosition(0, pos);
     }
 }

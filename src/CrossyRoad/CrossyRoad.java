@@ -1,8 +1,6 @@
 package CrossyRoad;
 
-
 import java.awt.Color;
-
 import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.ui.Button;
@@ -10,16 +8,15 @@ import edu.macalester.graphics.ui.Button;
 public class CrossyRoad {
     public static final int CANVAS_WIDTH = 700;
     public static final int CANVAS_HEIGHT = 700;
-
     public static int score = 0;
 
     private CanvasWindow canvas;
     private Chicken chicken;
     private RowManager rowManager;
     private GraphicsGroup scoreLabel;
-    private GraphicsGroup gameOver = new GraphicsGroup();
-    private Rectangle scoreBackground = new Rectangle(20, 20, 155, 40);
-    private Rectangle gameOverBackground = new Rectangle(0,0,800,120);
+    private GraphicsGroup gameOver;
+    private Rectangle scoreBackground;
+    private Rectangle gameOverBackground;
     private GraphicsText scoreText;
     private GraphicsText title;
     private GraphicsText titleShadow;
@@ -29,8 +26,13 @@ public class CrossyRoad {
     public boolean animation = true;
     public boolean titleOnCanvas = true;
 
+    public static void main(String[] args) {
+        new CrossyRoad();
+    }
+
     public CrossyRoad() {
         gameoverScore = new GraphicsText();
+        gameOver = new GraphicsGroup();
         canvas = new CanvasWindow("Crossy Roads!", CANVAS_WIDTH, CANVAS_HEIGHT);
         scoreLabel = new GraphicsGroup();
         scoreText = new GraphicsText();
@@ -42,15 +44,12 @@ public class CrossyRoad {
             chicken.moveDown();
         }
         chicken.addToCanvas(canvas);
-
         titleScreen();
         scoreTracker();
         run();
     }
 
     private void run() {
-        // https://stackoverflow.com/questions/541749/how-to-determine-an-objects-class used to do the
-        // instanceof check
         canvas.onKeyDown(event -> {
             chicken.move(canvas,event,animation);
             if (event.getKey() == Key.UP_ARROW && animation) {
@@ -96,6 +95,7 @@ public class CrossyRoad {
     }
 
     public void scoreTracker() {
+        scoreBackground = new Rectangle(20, 20, 155, 40);
         scoreBackground.setFilled(true);
         scoreBackground.setFillColor(Color.WHITE);
         scoreLabel.add(scoreBackground);
@@ -152,6 +152,7 @@ public class CrossyRoad {
     }
 
     public void gameOverText(){
+        gameOverBackground = new Rectangle(0,0,650,120);
         gameOverBackground.setFilled(true);
         gameOverBackground.setFillColor(Color.WHITE);
         gameOverBackground.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-60);
@@ -167,7 +168,5 @@ public class CrossyRoad {
         gameOver.add(gameOverText);
     }
 
-    public static void main(String[] args) {
-        new CrossyRoad();
-    }
+
 }
