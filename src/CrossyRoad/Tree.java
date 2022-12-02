@@ -24,9 +24,6 @@ public class Tree extends GraphicsGroup {
     }
 
     private void buildTree() {
-        // to test proportions:
-        // size = new Rectangle(0,0,TREE_WIDTH, TREE_HEIGHT);
-        // this.add(size);
 
         treeBase = new Rectangle(TREE_WIDTH * 5 / 12, TREE_HEIGHT * 3 / 4, TREE_WIDTH / 6, TREE_HEIGHT / 5);
         treeBase.setStrokeColor(Color.BLACK);
@@ -38,11 +35,6 @@ public class Tree extends GraphicsGroup {
         leaf.setFillColor(Color.GREEN);
         this.add(leaf);
 
-        // tree = new Image(0, 0);
-        // tree.setImagePath("alt_tree.png");
-        // tree.setMaxHeight(TREE_WIDTH);
-        // tree.setMaxWidth(TREE_HEIGHT);
-        // this.add(tree);
     }
 
     public void addToCanvas(CanvasWindow canvas) {
