@@ -1,7 +1,6 @@
 package CrossyRoad;
 
 import java.awt.Color;
-import java.beans.VetoableChangeListener;
 import java.util.ArrayList;
 import edu.macalester.graphics.*;
 
@@ -11,7 +10,6 @@ public class Road extends Row {
     private double direction;
     private double carSpeed;
     public Car car;
-    private CanvasWindow canvas;
 
     public Road(double y) {
         super(Color.DARK_GRAY, y);
@@ -46,7 +44,7 @@ public class Road extends Row {
 
     public boolean carNotInside(Car car){
         for (Car vehicle : cars) {
-            if ((direction>0 ? vehicle.getX()+vehicle.getWidth()>695 : vehicle.getX()<5)){
+            if ((direction>0 ? vehicle.getX()+vehicle.getWidth()>670 : vehicle.getX()<30)){
                 return false;
             }
         }
