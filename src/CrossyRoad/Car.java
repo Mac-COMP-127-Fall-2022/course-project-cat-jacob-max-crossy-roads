@@ -88,6 +88,10 @@ public class Car extends GraphicsGroup {
         canvas.add(this);
     }
 
+/**
+* Method for animating the car, removes the car from the canvas once
+* it drives out of the x bounds. 
+*/
     public void animateCar( double dt, CanvasWindow canvas){
         if (this.getPosition().getX() > 700 && x == -40){
             this.removeAll();

@@ -5,6 +5,9 @@ import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.ui.Button;
 
+/**
+* Main game class to run Crossy Roads
+*/
 public class CrossyRoad {
     public static final int CANVAS_WIDTH = 700;
     public static final int CANVAS_HEIGHT = 700;
@@ -49,6 +52,11 @@ public class CrossyRoad {
         run();
     }
 
+/**
+* Our run function does a lot, it tracks key movements and causes the chicken to
+* move depending on selected arrow keys. It also generates random roads and cars
+* to spawn. This also controls all the animation for the game
+*/
     private void run() {
         canvas.onKeyDown(event -> {
             chicken.move(canvas,event,animation);
@@ -106,6 +114,10 @@ public class CrossyRoad {
         canvas.add(scoreLabel);
     }
 
+/**
+* Creates a play again button that allows the user to restart the game. 
+* Resets a lot of the game functions to allow it to be played from beginning
+*/
     public void gameOver(){
         gameOverText();
         playAgain = new Button("Play Again");
