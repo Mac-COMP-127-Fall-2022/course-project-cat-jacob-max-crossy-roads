@@ -1,7 +1,6 @@
 package CrossyRoad;
 
 import java.awt.Color;
-import java.beans.VetoableChangeListener;
 import java.util.ArrayList;
 import edu.macalester.graphics.*;
 
@@ -11,7 +10,6 @@ public class Road extends Row {
     private double direction;
     private double carSpeed;
     public Car car;
-    private CanvasWindow canvas;
 
 /**
 * Constructor for the road class, it adds cars to an array list and
