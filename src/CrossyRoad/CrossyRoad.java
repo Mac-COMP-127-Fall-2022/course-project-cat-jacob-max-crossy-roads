@@ -6,9 +6,9 @@ import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.ui.Button;
 
 /**
- * @authors Cat Martins, Jacob Hellenbrand, Max Carlin
+ * Main class to run the game Crossy Roads
  * 
- *          Main class to run the game Crossy Roads
+ * @authors Cat Martins, Jacob Hellenbrand, Max Carlin
  */
 public class CrossyRoad {
     public static final int CANVAS_WIDTH = 700;
