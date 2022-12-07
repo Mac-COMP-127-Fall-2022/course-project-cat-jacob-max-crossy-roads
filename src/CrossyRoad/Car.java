@@ -7,6 +7,10 @@ import java.util.Random;
 
 import edu.macalester.graphics.*;
 
+/**
+ * Car class creates a left or right facing car that can be added to a canvas. Car can be animated
+ * to make it "drive" across a canvas
+ */
 public class Car extends GraphicsGroup {
 
     private static final double CAR_WIDTH = 60;
@@ -19,17 +23,27 @@ public class Car extends GraphicsGroup {
     private double carSpeed;
     private Random rand = new Random();
 
-    public Car(double x, double y,double carSpeed) {
+    /**
+     * Car constructer, sets car's position and speed and creates it
+     * 
+     * @param x        x position
+     * @param y        y position
+     * @param carSpeed car's speed moving across canvas
+     */
+    public Car(double x, double y, double carSpeed) {
         super(x, y);
         this.x = x;
         this.carSpeed = carSpeed;
-        if (x > 0){
+        if (x > 0) {
             buildLeftFacingCar();
         } else {
             buildRightFacingCar();
         }
     }
 
+    /**
+     * Builds a car facing the left direction
+     */
     private void buildLeftFacingCar() {
 
         List<Color> moColors = colorList();
@@ -57,6 +71,9 @@ public class Car extends GraphicsGroup {
         this.add(rightWheel);
     }
 
+    /**
+     * Builds a car facing the right direction
+     */
     private void buildRightFacingCar() {
 
         List<Color> moColors = colorList();
@@ -84,42 +101,39 @@ public class Car extends GraphicsGroup {
         this.add(rightWheel);
     }
 
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(this);
-    }
-
-/**
-* Method for animating the car, removes the car from the canvas once
-* it drives out of the x bounds. 
-*/
-    public void animateCar( double dt, CanvasWindow canvas){
-        if (this.getPosition().getX() > 700 && x == -40){
+    /**
+     * Method for animating the car, removes the car from the canvas once it drives out of the x bounds.
+     * 
+     * @param dt     change in time
+     * @param canvas canvas the car is on
+     */
+    public void animateCar(double dt, CanvasWindow canvas) {
+        if (this.getPosition().getX() > 700 && x == -40) {
             this.removeAll();
-        }
-        else if (this.getPosition().getX() < -40 && x == 740){
+        } else if (this.getPosition().getX() < -40 && x == 740) {
             this.removeAll();
-        }
-        else{
-            this.moveBy((x == -40 ? dt*carSpeed : -dt*carSpeed), 0);
+        } else {
+            this.moveBy((x == -40 ? dt * carSpeed : -dt * carSpeed), 0);
         }
     }
 
-    public Car getCar(){
-        return this;
-    }
-
-    public List<Color> colorList(){
+    /**
+     * Creates a list of colors for the cars
+     * 
+     * @return list of colors
+     */
+    public List<Color> colorList() {
         List<Color> colors = new ArrayList<>();
-        colors.add(new Color(225,49,49));
-        colors.add(new Color(225,96,49));
-        colors.add(new Color(225,131,49));
-        colors.add(new Color(225,194,49));
-        colors.add(new Color(202,225,49));
-        colors.add(new Color(124,225,49));
-        colors.add(new Color(54,225,49));
-        colors.add(new Color(49,225,170));
-        colors.add(new Color(49,186,225));
-        colors.add(new Color(49,119,225));
+        colors.add(new Color(225, 49, 49));
+        colors.add(new Color(225, 96, 49));
+        colors.add(new Color(225, 131, 49));
+        colors.add(new Color(225, 194, 49));
+        colors.add(new Color(202, 225, 49));
+        colors.add(new Color(124, 225, 49));
+        colors.add(new Color(54, 225, 49));
+        colors.add(new Color(49, 225, 170));
+        colors.add(new Color(49, 186, 225));
+        colors.add(new Color(49, 119, 225));
         return colors;
     }
 
