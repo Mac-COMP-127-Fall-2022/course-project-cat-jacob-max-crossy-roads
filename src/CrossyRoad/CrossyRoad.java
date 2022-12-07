@@ -6,8 +6,10 @@ import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.ui.Button;
 
 /**
-* Main game class to run Crossy Roads
-*/
+ * @authors Cat Martins, Jacob Hellenbrand, Max Carlin
+ * 
+ *          Main class to run the game Crossy Roads
+ */
 public class CrossyRoad {
     public static final int CANVAS_WIDTH = 700;
     public static final int CANVAS_HEIGHT = 700;
@@ -33,6 +35,9 @@ public class CrossyRoad {
         new CrossyRoad();
     }
 
+    /**
+     * Creates the title screen and score tracker then runs the game
+     */
     public CrossyRoad() {
         gameoverScore = new GraphicsText();
         gameOver = new GraphicsGroup();
@@ -52,44 +57,45 @@ public class CrossyRoad {
         run();
     }
 
-/**
-* Our run function does a lot, it tracks key movements and causes the chicken to
-* move depending on selected arrow keys. It also generates random roads and cars
-* to spawn. This also controls all the animation for the game
-*/
+    /**
+     * Tracks key movements and causes the chicken to move depending on selected arrow key. Controls all
+     * the animation for the game which includes moving and adding rows on the canvas, moving and adding
+     * the cars on the roads, keeping track of the score, and checking for collisions with the chicken.
+     */
     private void run() {
         canvas.onKeyDown(event -> {
-            chicken.move(canvas,event,animation);
+            chicken.move(canvas, event, animation);
             if (event.getKey() == Key.UP_ARROW && animation) {
                 if (chicken.getY() > canvas.getHeight() * 2 / 3 + 35 &&
-                !(canvas.getElementAt(chicken.getCenter().getX(),
-                    chicken.getCenter().getY() - 70) instanceof Ellipse) &&
-                    !(canvas.getElementAt(chicken.getCenter().getX(), 
-                    chicken.getCenter().getY() - 70) instanceof Image)) {
+                    !(canvas.getElementAt(chicken.getCenter().getX(),
+                        chicken.getCenter().getY() - 70) instanceof Ellipse)
+                    &&
+                    !(canvas.getElementAt(chicken.getCenter().getX(),
+                        chicken.getCenter().getY() - 70) instanceof Image)) {
                     chicken.moveUp();
 
                 } else if (!(canvas.getElementAt(chicken.getCenter().getX(),
                     chicken.getCenter().getY() - 70) instanceof Ellipse) &&
-                    !(canvas.getElementAt(chicken.getCenter().getX(), 
-                    chicken.getCenter().getY() - 70) instanceof Image)) {
+                    !(canvas.getElementAt(chicken.getCenter().getX(),
+                        chicken.getCenter().getY() - 70) instanceof Image)) {
                     rowManager.moveRows();
                     raiseScore();
-                    }
                 }
+            }
         });
         canvas.animate(() -> {
             if (score == 1 && titleOnCanvas) {
                 canvas.remove(title);
                 canvas.remove(titleShadow);
-                titleOnCanvas=false;
-                }
+                titleOnCanvas = false;
+            }
             for (Road road : rowManager.getRoads()) {
                 if (Math.random() < .01 && canvas.getElementAt(-30, road.getCenter().getY()) == null &&
                     canvas.getElementAt(730, road.getCenter().getY()) == null && animation) {
                     road.addCar(road.getCarSpeed());
                 }
                 for (Car car : road.getCars()) {
-                    if(animation){
+                    if (animation) {
                         car.animateCar(.1, canvas);
                     }
                 }
@@ -102,6 +108,9 @@ public class CrossyRoad {
         });
     }
 
+    /**
+     * Creates the score tracker label in the upper left corner.
+     */
     public void scoreTracker() {
         scoreBackground = new Rectangle(20, 20, 155, 40);
         scoreBackground.setFilled(true);
@@ -114,25 +123,26 @@ public class CrossyRoad {
         canvas.add(scoreLabel);
     }
 
-/**
-* Creates a play again button that allows the user to restart the game. 
-* Resets a lot of the game functions to allow it to be played from beginning
-*/
-    public void gameOver(){
+    /**
+     * Creates a play again button that allows the user to restart the game. Resets all the necessary
+     * game functions to allow it to be played from beginning including reseting the chicken, score,
+     * rows, and title screen.
+     */
+    public void gameOver() {
         gameOverText();
         playAgain = new Button("Play Again");
-        playAgain.setCenter(350,370);
-        playAgain.onClick(()->{
+        playAgain.setCenter(350, 370);
+        playAgain.onClick(() -> {
             canvas.removeAll();
-            score=0;
+            score = 0;
             rowManager = new RowManager(canvas);
             chicken = new Chicken(CANVAS_WIDTH / 2 - 35, CANVAS_HEIGHT * 2 / 3 + 35);
             while (!(canvas.getElementAt(chicken.getCenter()) instanceof Rectangle)) {
                 chicken.moveDown();
             }
             chicken.addToCanvas(canvas);
-            animation=true;
-            titleOnCanvas=true;
+            animation = true;
+            titleOnCanvas = true;
 
             titleScreen();
             scoreTracker();
@@ -141,6 +151,9 @@ public class CrossyRoad {
         canvas.add(gameOver);
     }
 
+    /**
+     * Creates the title screen that is visible at the start of the game.
+     */
     public void titleScreen() {
         titleShadow.setFont("rockwell", FontStyle.BOLD, 80);
         titleShadow.setFillColor(Color.DARK_GRAY);
@@ -155,6 +168,9 @@ public class CrossyRoad {
         canvas.add(title);
     }
 
+    /**
+     * Increases the score and resets the score text label
+     */
     public void raiseScore() {
         score++;
         scoreText.setText("Score: " + score);
@@ -163,22 +179,24 @@ public class CrossyRoad {
         }
     }
 
-    public void gameOverText(){
-        gameOverBackground = new Rectangle(0,0,650,120);
+    /**
+     * Creates the game over text that appears when the user ends the game
+     */
+    public void gameOverText() {
+        gameOverBackground = new Rectangle(0, 0, 650, 120);
         gameOverBackground.setFilled(true);
         gameOverBackground.setFillColor(Color.WHITE);
-        gameOverBackground.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-60);
+        gameOverBackground.setCenter(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 60);
         gameOverText = new GraphicsText("GAME OVER!");
         gameOverText.setFont("rockwell", FontStyle.BOLD, 80);
         gameOverText.setFillColor(Color.RED.darker());
-        gameOverText.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-75);
+        gameOverText.setCenter(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 75);
         gameoverScore.setText("Score: " + score);
         gameoverScore.setFont("rockwell", FontStyle.BOLD, 30);
-        gameoverScore.setCenter(CANVAS_WIDTH/2,CANVAS_HEIGHT/2-20);
+        gameoverScore.setCenter(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 20);
         gameOver.add(gameOverBackground);
         gameOver.add(gameoverScore);
         gameOver.add(gameOverText);
     }
-
 
 }

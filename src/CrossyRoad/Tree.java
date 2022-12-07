@@ -1,11 +1,13 @@
 package CrossyRoad;
 
 import java.awt.Color;
-import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
 
+/**
+ * Tree class creates a tree that can be added to a canvas
+ */
 public class Tree extends GraphicsGroup {
 
     private static final double TREE_WIDTH = 70;
@@ -13,15 +15,20 @@ public class Tree extends GraphicsGroup {
     private Rectangle treeBase;
     private Ellipse leaf;
 
-/**
-* Tree constructer, sets position of tree to be used
-* and creates the tree
-*/
+    /**
+     * Tree constructer, sets position of tree to be used and creates the tree
+     *
+     * @param x x position
+     * @param y y position
+     */
     public Tree(double x, double y) {
         super(x, y);
         buildTree();
     }
 
+    /**
+     * Builds a tree
+     */
     private void buildTree() {
         treeBase = new Rectangle(TREE_WIDTH * 5 / 12, TREE_HEIGHT * 3 / 4, TREE_WIDTH / 6, TREE_HEIGHT / 5);
         treeBase.setStrokeColor(Color.BLACK);
@@ -34,7 +41,4 @@ public class Tree extends GraphicsGroup {
         this.add(leaf);
     }
 
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(this);
-    }
 }

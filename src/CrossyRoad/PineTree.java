@@ -2,10 +2,12 @@ package CrossyRoad;
 
 import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
-import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsGroup;
 
+/**
+ * Pinetree class creates a pine tree that can be added to a canvas
+ */
 public class PineTree extends GraphicsGroup {
 
     private static final double TREE_WIDTH = 70;
@@ -19,21 +21,27 @@ public class PineTree extends GraphicsGroup {
     private Ellipse circle;
     private Color green = Color.green.darker().darker();
 
-/**
-* Pine Tree constructer creates pine tree and sets position
-*/
+    /**
+     * Pine Tree constructer creates pine tree and sets position
+     *
+     * @param x x position
+     * @param y y position
+     */
     public PineTree(double x, double y) {
-        super(x,y);
+        super(x, y);
         buildTree();
     }
 
+    /**
+     * Builds a pine tree
+     */
     private void buildTree() {
-        treeBase = new Rectangle(25, 48, TREE_WIDTH /6, TREE_HEIGHT / 4);
+        treeBase = new Rectangle(25, 48, TREE_WIDTH / 6, TREE_HEIGHT / 4);
         treeBase.setStrokeColor(Color.BLACK);
         treeBase.setFillColor(Color.BLACK);
         this.add(treeBase);
 
-        bottomLayer = new Rectangle(3, 45, 54 , TREE_HEIGHT / 8);
+        bottomLayer = new Rectangle(3, 45, 54, TREE_HEIGHT / 8);
         bottomLayer.setStrokeColor(green);
         bottomLayer.setFillColor(green);
         this.add(bottomLayer);
@@ -64,9 +72,4 @@ public class PineTree extends GraphicsGroup {
         this.add(circle);
     }
 
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(this);
-    }
 }
-
-
