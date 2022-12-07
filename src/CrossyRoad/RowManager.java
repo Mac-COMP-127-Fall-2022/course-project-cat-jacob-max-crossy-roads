@@ -24,7 +24,7 @@ public class RowManager {
     public void setUpRows() {
         for (int i = 0; i <= 630; i += 70){
             if (i > 280){
-                rows.add(new Grass(i));
+                rows.add(new Grass(i,true));
             }else {
                 randomRow(i);
             }
@@ -52,7 +52,7 @@ public class RowManager {
             rows.add(road);
             roads.add(road);
         }else{
-            Grass grass = new Grass(y);
+            Grass grass = new Grass(y,false);
             rows.add(grass);
             grasses.add(grass);
         }

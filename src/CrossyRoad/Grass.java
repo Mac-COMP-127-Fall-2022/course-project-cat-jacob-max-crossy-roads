@@ -9,10 +9,10 @@ public class Grass extends Row {
 /**
 * Grass constructer adds objects to the grass row, and sets its y position
 */
-    public Grass(double y) {
+    public Grass(double y,boolean initial) {
         super(Color.GREEN.darker(), y);
         this.y = y;
-        addObjects();
+        addObjects(initial);
     }
 
 /**
@@ -20,11 +20,11 @@ public class Grass extends Row {
 * It takes random numbers between 0 and 1 and depending on the number a tree
 * or boulder is added to the row
 */
-    private void addObjects() {
+    private void addObjects(boolean initial) {
         for (int i = 35; i < 665; i += 70) {
             double randNum = Math.random();
-            if (randNum >= .8) {
-                if (randNum >= .9) {
+            if (randNum >= (initial == true ? .9 : .8)) {
+                if (randNum >= (initial == true ? .95 : .9)) {
                     Tree tree = new Tree(i, y);
                     this.add(tree);
                 }else {
